@@ -1,6 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Multidoctores</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Multidoctores</string>
+    <string name="type_msg">Type message</string>
+
+    <string name="drawer_open">Abrir</string>
+    <string name="drawer_close">Cerrar</string>
+
+    <string name="or">o</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="username">Nombre y Apellido</string>
+    <string name="password">Contraseña nueva</string>
+    <string name="register">Registrar</string>
+    <string name="log_in">Iniciar sesión</string>
+    <string name="forgot_my_pwd">Has olvidado tu contraseña?</string>
+    <string name="my_chats">Mis Chats</string>
+    <string name="all_chats">Todos los Chats</string>
+    <string name="search">Buscar</string>
+    <string name="to">Para:</string>
+    <string name="edit">Editar</string>
+    <string name="new_chat">Nuevo Chat</string>
+    <string name="alert_wait">Por favor espere...</string>
+    <string name="err_fields_empty">Llene todos los campos.</string>
+    <string name="err_singup">Error al registrar:</string>
+    <string name="err_login">Error al iniciar sesión:</string>
+    <string name="err_users">Error al encontrar usuarios:</string>
+    <string name="alert_loading">Cargando...</string>
+    <string name="msg_no_user_found">Sin usuarios para chats!</string>
+    <string name="title_activity_registrar">Registrar</string>
+    <string name="title_activity_registro">Registro</string>
+    <string name="title_activity_inicio">Inicio</string>
+    <string name="title_activity_ya_tengo">Ya tengo cuenta</string>
+    <string name="title_activity_quiero_registro">No tengo cuenta</string>
 </resources>

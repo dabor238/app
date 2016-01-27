@@ -15,6 +15,15 @@
         android:layout_height="wrap_content"
         android:text="Cargando Datos"
         android:id="@+id/textViewResultado"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:layout_marginTop="128dp"
         android:layout_below="@+id/textViewResultado"
         android:layout_centerHorizontal="true"/>
 

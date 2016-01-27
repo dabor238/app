@@ -1,11 +1,16 @@
 package multidoctores.multidoctores;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +22,7 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 
-public class Chat extends ActionBarActivity {
+public class Chat extends Activity {
     TextView resultadoTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,8 @@ public class Chat extends ActionBarActivity {
 
 
 
+
+
         MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
         Call<Usuario> call = apiService.getUser();
 
@@ -42,7 +49,9 @@ public class Chat extends ActionBarActivity {
             public void onResponse(Response<Usuario> response, Retrofit retrofit) {
                 int statusCode = response.code();
                 Usuario user = response.body();
-                String caca = "caca";
+                String hola = user.getTelefono().toString();
+                resultadoTextView.setText(hola);
+                Toast.makeText(getApplicationContext(), user.getNombre().toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -51,6 +60,9 @@ public class Chat extends ActionBarActivity {
                 Log.w("myApp", "no network");
             }
         });
+
+        Button btn_ir = (Button)findViewById(R.id.button);
+        btn_ir.setOnClickListener(new ClickOnClickListener());
 
      //  Call<Usuarios> call2 = apiService.getVarios();
 
@@ -116,5 +128,16 @@ public class Chat extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    class ClickOnClickListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v){
+
+
+            Intent i = new Intent(Chat.this, Inicio.class);
+            startActivity(i);
+        }
     }
 }
