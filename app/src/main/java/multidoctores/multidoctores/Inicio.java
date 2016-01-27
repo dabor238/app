@@ -17,6 +17,9 @@ public class Inicio extends Activity {
         TextView btn_ir = (TextView)findViewById(R.id.quiero);
         btn_ir.setOnClickListener(new ClickOnClickListener());
 
+        TextView btn_recuperar = (TextView)findViewById(R.id.recuperar);
+        btn_recuperar.setOnClickListener(new RecuperarOnClickListener());
+
 
     }
 
@@ -27,6 +30,17 @@ public class Inicio extends Activity {
 
 
             Intent i = new Intent(Inicio.this, Registrar.class);
+            startActivity(i);
+        }
+    }
+
+    class RecuperarOnClickListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v){
+
+
+            Intent i = new Intent(Inicio.this, OlvideContrasenia.class);
             startActivity(i);
         }
     }

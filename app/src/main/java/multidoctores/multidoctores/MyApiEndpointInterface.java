@@ -25,6 +25,9 @@ public interface MyApiEndpointInterface {
     @POST("/api/usuarios/crearUsuario")
     Call<Boolean> createUser(@Query("nameNew") String username,@Query("passNew") String pass,@Query("emailNew") String email);
 
+    @POST("/api/usuarios/recuperando")
+    Call<Boolean> RecuperarUser(@Query("mail") String mail);
+
 
 
 }

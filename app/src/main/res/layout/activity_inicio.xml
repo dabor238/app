@@ -32,7 +32,7 @@
             android:hint="@string/username"
             android:textColorHint="#0071BC">
 
-            <requestFocus />
+
         </EditText>
 
         <EditText
@@ -43,7 +43,7 @@
             android:layout_marginBottom="@dimen/pad_20dp"
             android:layout_marginTop="@dimen/pad_5dp"
             android:drawableLeft="@drawable/ic_pwd"
-            android:hint="@string/password"
+            android:hint="@string/contrasena"
             android:inputType="textPassword"
             android:textColorHint="#0071BC">
         </EditText>
@@ -76,6 +76,19 @@
                   android:layout_marginTop="20dp"
                   android:clickable="false"
                   android:id="@+id/quiero"/>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:padding="@dimen/pad_10dp"
+                  android:text="@string/title_activity_recuperar"
+                  android:textColor="@color/main_color_gray_dk"
+                  android:textSize="@dimen/txt_18sp"
+                  android:gravity="center"
+                  android:drawablePadding="@dimen/pad_10dp"
+                  android:layout_marginTop="20dp"
+                  android:clickable="false"
+                  android:id="@+id/recuperar"/>
     </LinearLayout>
 
 </ScrollView>

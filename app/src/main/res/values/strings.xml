@@ -11,6 +11,7 @@
     <string name="email">Correo Electrónico</string>
     <string name="username">Nombre y Apellido</string>
     <string name="password">Contraseña nueva</string>
+    <string name="contrasena">Contraseña</string>
     <string name="register">Registrar</string>
     <string name="log_in">Iniciar sesión</string>
     <string name="forgot_my_pwd">Has olvidado tu contraseña?</string>
@@ -32,4 +33,8 @@
     <string name="title_activity_inicio">Inicio</string>
     <string name="title_activity_ya_tengo">Ya tengo cuenta</string>
     <string name="title_activity_quiero_registro">No tengo cuenta</string>
+    <string name="title_activity_recuperar">Recuperar Contraseña</string>
+    <string name="title_activity_olvide_contrasenia">OlvideContrasenia</string>
+    <string name="title_activity_recuperarTxt">Recuperar contraseña</string>
+    <string name="ingrese_correo">Ingrese su correo electrónico</string>
 </resources>
