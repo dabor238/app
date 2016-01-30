@@ -37,6 +37,10 @@
             android:label="@string/title_activity_olvide_contrasenia"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
+        <activity
+            android:name=".Conversacion"
+            android:label="@string/title_activity_conversacion">
+        </activity>
     </application>
 
 </manifest>
