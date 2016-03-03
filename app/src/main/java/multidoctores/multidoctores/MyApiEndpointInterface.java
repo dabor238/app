@@ -23,6 +23,10 @@ public interface MyApiEndpointInterface {
     Call<ItemChat[]> getChatList();
    // Call<ChatL> getChatList(@Query("idUser") int UserID);
 
+    @GET("/api/usuarios/chatsHistory")
+    Call<itemHistoria[]> getChatHistoria(@Query("chatId") String chatId);
+    // Call<ChatL> getChatList(@Query("idUser") int UserID);
+
     @GET("/api/Usuarios/arreglo")
     Call<Usuarios> getVarios();
 

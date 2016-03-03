@@ -2,6 +2,7 @@ package multidoctores.multidoctores;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class List extends AppCompatActivity {
         Button btn_nuevaConsulta = (Button)findViewById(R.id.nuevaConsulta);
         btn_nuevaConsulta.setOnClickListener(new InicioClickListener());
 
+
         String BASE_URL = "http://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -58,6 +60,7 @@ public class List extends AppCompatActivity {
                     LayoutInflater inflater = LayoutInflater.from(List.this);
                     View inflatedLayout = inflater.inflate(R.layout.chat_list, null, false);
                     TextView lbl = (TextView) inflatedLayout.findViewById(R.id.chatTitle);
+                    lbl.setOnClickListener(new MyClickListener());
                     lbl.setText(u.getIdChat());
                     linearLayout.addView(inflatedLayout);
                 }
@@ -71,8 +74,30 @@ public class List extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "no conecta", Toast.LENGTH_SHORT).show();
 
             }
+
+
+
         });
+
     }
+
+    public class MyClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+
+
+            TextView text = ((TextView)v);
+            String IdText = text.getText().toString();
+            Intent i = new Intent(getApplicationContext(), ChatHistoria.class);
+            i.putExtra("idChat",IdText);
+            startActivity(i);
+
+        }
+
+    }
+
+
 
 
     class InicioClickListener implements View.OnClickListener{

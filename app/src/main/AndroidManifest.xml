@@ -39,11 +39,14 @@
         </activity>
         <activity
             android:name=".Conversacion"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:parentActivityName="multidoctores.multidoctores.List">
+            android:parentActivityName=".List"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
-        <activity android:name=".List"
-                  android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+            android:name=".List"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name=".ChatHistoria">
         </activity>
     </application>
 
