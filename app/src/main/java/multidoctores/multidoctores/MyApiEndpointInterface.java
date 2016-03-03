@@ -19,6 +19,10 @@ public interface MyApiEndpointInterface {
     @GET("/api/Usuarios/fichaMedica?Mail=dabor238@gmail.com")
     Call<Usuario> getUser();
 
+    @GET("/api/usuarios/historial?idUser=9")
+    Call<ItemChat[]> getChatList();
+   // Call<ChatL> getChatList(@Query("idUser") int UserID);
+
     @GET("/api/Usuarios/arreglo")
     Call<Usuarios> getVarios();
 
@@ -27,6 +31,11 @@ public interface MyApiEndpointInterface {
 
     @POST("/api/usuarios/recuperando")
     Call<Boolean> RecuperarUser(@Query("mail") String mail);
+
+    @POST("/api/Usuarios/asignarUsuario")
+    Call<Boolean> AsignarUser(@Query("usuario") String usuario);
+
+
 
 
 

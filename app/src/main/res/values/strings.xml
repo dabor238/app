@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Multidoctores</string>
-    <string name="type_msg">Type message</string>
+    <string name="type_msg">Escribir mensaje</string>
 
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Cerrar</string>
@@ -37,5 +37,5 @@
     <string name="title_activity_olvide_contrasenia">OlvideContrasenia</string>
     <string name="title_activity_recuperarTxt">Recuperar contraseña</string>
     <string name="ingrese_correo">Ingrese su correo electrónico</string>
-    <string name="title_activity_conversacion">Conversacion</string>
+    <string name="title_activity_conversacion">Chateando</string>
 </resources>

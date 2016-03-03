@@ -31,7 +31,7 @@ public class Inicio extends Activity {
         public void onClick(View v){
 
 
-            Intent i = new Intent(Inicio.this, Conversacion.class);
+            Intent i = new Intent(Inicio.this, List.class);
             startActivity(i);
         }
     }
