@@ -64,7 +64,7 @@ public class Conversacion extends AppCompatActivity {
     SignalRService servicio = new SignalRService();
     TextView resultado;
 
-
+    SessionManagement session;
 
 
     @Override
@@ -77,6 +77,8 @@ public class Conversacion extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+
+        session = new SessionManagement(getApplicationContext());
 
 
         String usuario = "dabor238@gmail.com";
@@ -226,6 +228,8 @@ public class Conversacion extends AppCompatActivity {
             case R.id.action_favorite:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
+
+                session.logoutUser();
                 return true;
 
             default:

@@ -10,6 +10,6 @@
 
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
-          android:title="opcione"
+          android:title="Logout"
           app:showAsAction="never"/>
 </menu>

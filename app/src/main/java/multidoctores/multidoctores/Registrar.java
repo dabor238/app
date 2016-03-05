@@ -18,7 +18,7 @@ import retrofit.Retrofit;
 
 public class Registrar extends Activity {
 
-
+    SessionManagement session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,14 @@ public class Registrar extends Activity {
         Button btn_Reg = (Button)findViewById(R.id.btnReg);
         btn_Reg.setOnClickListener(new RegistroClickListener());
 
+
+        session = new SessionManagement(getApplicationContext());
+
+        if(session.isLoggedIn()){
+            Intent i = new Intent(Registrar.this, List.class);
+            startActivity(i);
+
+        }
 
 
     }

@@ -19,13 +19,16 @@ public interface MyApiEndpointInterface {
     @GET("/api/Usuarios/fichaMedica?Mail=dabor238@gmail.com")
     Call<Usuario> getUser();
 
-    @GET("/api/usuarios/historial?idUser=9")
-    Call<ItemChat[]> getChatList();
+    @GET("/api/usuarios/historial")
+    Call<ItemChat[]> getChatList(@Query("idUser") String idUser);
    // Call<ChatL> getChatList(@Query("idUser") int UserID);
 
     @GET("/api/usuarios/chatsHistory")
     Call<itemHistoria[]> getChatHistoria(@Query("chatId") String chatId);
     // Call<ChatL> getChatList(@Query("idUser") int UserID);
+
+    @GET("/api/usuarios/autentico")
+    Call<itemAutentico> getAutenticar(@Query("usuario") String usuario,@Query("clave") String clave);
 
     @GET("/api/Usuarios/arreglo")
     Call<Usuarios> getVarios();
