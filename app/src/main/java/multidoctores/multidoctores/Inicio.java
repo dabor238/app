@@ -69,18 +69,19 @@ public class Inicio extends Activity {
                 @Override
                 public void onResponse(Response<itemAutentico> response, Retrofit retrofit) {
                     itemAutentico userPres = response.body();
-                    Toast.makeText(getApplicationContext(), userPres.getIdUsuario(), Toast.LENGTH_LONG).show();
-                    if(userPres.getIdUsuario().equals(0)){
 
-                        Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
-
-                    }else{
+                    if(userPres.isEntra()){
 
                         String correo = userPres.getCorreo();
                         String id = userPres.getIdUsuario();
                         session.createLoginSession(id, correo);
                         Intent i = new Intent(Inicio.this, List.class);
                         startActivity(i);
+
+
+                    }else{
+
+                        Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
 
                     }
 

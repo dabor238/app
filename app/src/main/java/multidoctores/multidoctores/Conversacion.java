@@ -33,6 +33,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import microsoft.aspnet.signalr.client.Platform;
@@ -79,10 +80,12 @@ public class Conversacion extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         session = new SessionManagement(getApplicationContext());
+        session.checkLogin();
 
+        // get user data from session
+        HashMap<String, String> user = session.getUserDetails();
 
-        String usuario = "dabor238@gmail.com";
-
+        String usuario = user.get(SessionManagement.KEY_EMAIL);
         String BASE_URL = "http://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

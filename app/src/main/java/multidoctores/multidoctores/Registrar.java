@@ -3,6 +3,7 @@ package multidoctores.multidoctores;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,13 +82,70 @@ public class Registrar extends Activity {
             call.enqueue(new Callback<Boolean>() {
                 @Override
                 public void onResponse(Response<Boolean> response, Retrofit retrofit) {
-                    int statusCode = response.code();
+                    boolean newU = response.body();
+
+                    if(newU){
+                        EditText mail = (EditText) findViewById(R.id.email);
+                        String email = mail.getText().toString();
+                        EditText pass1 = (EditText) findViewById(R.id.pwd);
+                        String clave = pass1.getText().toString();
+
+                        String BASE_URL = "http://www.multidoctores.com";
+                        final Retrofit retrofit2 = new Retrofit.Builder()
+                                .baseUrl(BASE_URL)
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+
+                        MyApiEndpointInterface apiService = retrofit2.create(MyApiEndpointInterface.class);
+                        Call<itemAutentico> call = apiService.getAutenticar(email, clave);
+
+                        call.enqueue(new Callback<itemAutentico>() {
+                            @Override
+                            public void onResponse(Response<itemAutentico> response, Retrofit retrofit) {
+                                itemAutentico userPres = response.body();
+                                Toast.makeText(getApplicationContext(), userPres.getIdUsuario(), Toast.LENGTH_LONG).show();
+                                if (userPres.isEntra()) {
+
+                                    String correo = userPres.getCorreo();
+                                    String id = userPres.getIdUsuario();
+                                    session.createLoginSession(id, correo);
+                                    Intent i = new Intent(Registrar.this, List.class);
+                                    startActivity(i);
+
+                                } else {
+
+
+                                    Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
+
+
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Throwable t) {
+                                Toast.makeText(getApplicationContext(), "Problemas al iniciar sesión. Intente de nuevo", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                    }else{
+
+                        Toast.makeText(getApplicationContext(), "Este correo ya está registrado.", Toast.LENGTH_LONG).show();
+
+
+                    }
+
+
+
+
 
                 }
 
                 @Override
                 public void onFailure(Throwable t) {
                     // Log error here since request failed
+                    Toast.makeText(getApplicationContext(), "Correo ya registrado", Toast.LENGTH_SHORT).show();
                 }
             });
 

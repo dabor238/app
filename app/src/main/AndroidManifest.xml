@@ -44,7 +44,8 @@
         </activity>
         <activity
             android:name=".List"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+           >
         </activity>
         <activity android:name=".ChatHistoria">
         </activity>

@@ -33,7 +33,7 @@ public interface MyApiEndpointInterface {
     @GET("/api/Usuarios/arreglo")
     Call<Usuarios> getVarios();
 
-    @POST("/api/usuarios/crearUsuario")
+    @POST("/api/usuarios/newUserApp")
     Call<Boolean> createUser(@Query("nameNew") String username,@Query("passNew") String pass,@Query("emailNew") String email);
 
     @POST("/api/usuarios/recuperando")
