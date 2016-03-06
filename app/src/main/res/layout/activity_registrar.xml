@@ -34,7 +34,8 @@
             android:drawableLeft="@drawable/ic_username"
             android:hint="@string/username"
             android:textColorHint="#0071BC"
-            android:textColor="#0071BC">
+            android:textColor="#0071BC"
+            android:layout_marginBottom="@dimen/pad_5dp">
 
         </EditText>
 

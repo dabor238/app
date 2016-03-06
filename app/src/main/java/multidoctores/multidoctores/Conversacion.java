@@ -79,6 +79,9 @@ public class Conversacion extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
+
+
+
         session = new SessionManagement(getApplicationContext());
         session.checkLogin();
 
@@ -86,6 +89,9 @@ public class Conversacion extends AppCompatActivity {
         HashMap<String, String> user = session.getUserDetails();
 
         String usuario = user.get(SessionManagement.KEY_EMAIL);
+
+
+
         String BASE_URL = "http://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -98,7 +104,7 @@ public class Conversacion extends AppCompatActivity {
         call.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Response<Boolean> response, Retrofit retrofit) {
-                Toast.makeText(getApplicationContext(), "chat creado", Toast.LENGTH_SHORT).show();
+
 
             }
 
@@ -110,7 +116,7 @@ public class Conversacion extends AppCompatActivity {
 
 
 
-        servicio.startSignalR();
+        servicio.startSignalR(usuario);
 
 
         String CLIENT_METHOD_BROADAST_MESSAGE = "addChatMessage";
@@ -168,13 +174,22 @@ public class Conversacion extends AppCompatActivity {
 
     }
 
+
+
     class EnviarClickListener implements View.OnClickListener{
 
         @Override
         public void onClick(View v){
             EditText mensaje1 = (EditText) findViewById(R.id.mensaje);
             String message = mensaje1.getText().toString();
-            servicio.sendMessage(message);
+            session = new SessionManagement(getApplicationContext());
+            session.checkLogin();
+
+            // get user data from session
+            HashMap<String, String> user = session.getUserDetails();
+
+            String usuario = user.get(SessionManagement.KEY_EMAIL);
+            servicio.sendMessage(message, usuario);
             mensaje1.setText("");
 
 
@@ -273,6 +288,14 @@ public class Conversacion extends AppCompatActivity {
         String SERVER_HUB_CHAT = "chatHub";
         mHubProxy = mHubConnection.createHubProxy(SERVER_HUB_CHAT);
 
+        session = new SessionManagement(getApplicationContext());
+        session.checkLogin();
+
+        // get user data from session
+        HashMap<String, String> user = session.getUserDetails();
+
+        String usuario = user.get(SessionManagement.KEY_EMAIL);
+
 
         ClientTransport clientTransport = new ServerSentEventsTransport(mHubConnection.getLogger());
         SignalRFuture<Void> signalRFuture = mHubConnection.start(clientTransport);
@@ -291,10 +314,10 @@ public class Conversacion extends AppCompatActivity {
                 System.out.println("yess");
             }
         });*/
-
+        String grupo2 = usuario +";"+usuario;
         try {
-            mHubProxy.invoke("joinGroup", "dabor238@gmail.com;dabor238@gmail.com").get();
-            System.out.println("Todo bien3333");
+            mHubProxy.invoke("joinGroup", grupo2).get();
+            System.out.println(grupo2);
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
             System.out.println("Todo mal");

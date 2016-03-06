@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.hardware.Camera;
 
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import microsoft.aspnet.signalr.client.Platform;
@@ -37,12 +38,10 @@ public class SignalRService {
 
 
 
-
+    //public static String user = "david@aumentum.tech";
     public SignalRService() {
 
     }
-
-
 
 
     /**
@@ -59,9 +58,10 @@ public class SignalRService {
     /**
      * method for clients (activities)
      */
-    public void sendMessage(String message) {
+    public void sendMessage(String message, String usuario) {
+
         try {
-            mHubProxy.invoke("sendChatMessage", "dabor238@gmail.com", "dabor238@gmail.com", message).get();
+            mHubProxy.invoke("sendChatMessage", usuario, usuario, message).get();
             System.out.println("Todo bien3Hey");
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
@@ -91,7 +91,7 @@ public class SignalRService {
         }
     }
 
-    public void startSignalR() {
+    public void startSignalR(String usuario) {
         Platform.loadPlatformComponent(new AndroidPlatformComponent());
 
         String serverUrl = "http://www.multidoctores.com";
@@ -122,7 +122,7 @@ public class SignalRService {
         });*/
 
         try {
-            mHubProxy.invoke("joinGroup", "dabor238@gmail.com;dabor238@gmail.com").get();
+            mHubProxy.invoke("joinGroup", usuario+";"+usuario).get();
             System.out.println("Todo bien3Hey");
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
