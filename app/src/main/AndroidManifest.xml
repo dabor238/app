@@ -8,6 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".Chat"
@@ -15,7 +16,7 @@
         </activity>
         <activity
             android:name=".Registrar"
-            android:label="@string/title_activity_registrar"
+            android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -25,7 +26,7 @@
         </activity>
         <activity
             android:name=".Login"
-            android:label="@string/title_activity_registrar">
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name=".Inicio"
@@ -44,10 +45,12 @@
         </activity>
         <activity
             android:name=".List"
+            android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.NoActionBar"
            >
         </activity>
-        <activity android:name=".ChatHistoria">
+        <activity android:name=".ChatHistoria"
+                  android:parentActivityName=".List">
         </activity>
     </application>
 

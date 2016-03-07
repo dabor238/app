@@ -77,7 +77,7 @@ public class Conversacion extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+       // ab.setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -191,6 +191,7 @@ public class Conversacion extends AppCompatActivity {
             String usuario = user.get(SessionManagement.KEY_EMAIL);
             servicio.sendMessage(message, usuario);
             mensaje1.setText("");
+            mensaje1.requestFocus();
 
 
 
@@ -229,6 +230,8 @@ public class Conversacion extends AppCompatActivity {
         super.onStop();
     }
 
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.bar, menu);
@@ -241,14 +244,15 @@ public class Conversacion extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
+                session.logoutUser();
                 return true;
 
-            case R.id.action_favorite:
+          /*  case R.id.action_favorite:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
 
-                session.logoutUser();
-                return true;
+
+                return true;*/
 
             default:
                 // If we got here, the user's action was not recognized.

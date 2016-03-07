@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Multidoctores</string>
+    <string name="app_name">Multidoctor</string>
     <string name="type_msg">Escribir mensaje</string>
 
     <string name="drawer_open">Abrir</string>

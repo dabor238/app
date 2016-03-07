@@ -81,11 +81,27 @@ public class List extends AppCompatActivity {
 
                     LayoutInflater inflater = LayoutInflater.from(List.this);
                     View inflatedLayout = inflater.inflate(R.layout.chat_list, null, false);
-                    TextView lbl = (TextView) inflatedLayout.findViewById(R.id.chatTitle);
-                    lbl.setOnClickListener(new MyClickListener());
+                    TextView lbl = (TextView) inflatedLayout.findViewById(R.id.mensajeChat);
                     lbl.setText(u.getIdChat());
+                    LinearLayout lista = (LinearLayout) inflatedLayout.findViewById(R.id.v1);
+                    lista.setId(Integer.parseInt(u.getIdChat()));
+                    lista.setClickable(true);
+                    lista.setOnClickListener(new clickChatHistoria());
+
+                    LinearLayout lista2 = (LinearLayout) inflatedLayout.findViewById(R.id.v2);
+                    lista2.setId(Integer.parseInt(u.getIdChat()));
+                    lista2.setClickable(true);
+                    lista2.setOnClickListener(new clickChatHistoria());
+
                     linearLayout.addView(inflatedLayout);
+
+
+
                 }
+
+
+
+
 
 
 
@@ -103,17 +119,21 @@ public class List extends AppCompatActivity {
 
     }
 
-    public class MyClickListener implements View.OnClickListener {
+
+
+    public class clickChatHistoria implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
 
 
-            TextView text = ((TextView)v);
-            String IdText = text.getText().toString();
+            LinearLayout Linear = ((LinearLayout)v);
+            String Id = String.valueOf(Linear.getId());
+
             Intent i = new Intent(getApplicationContext(), ChatHistoria.class);
-            i.putExtra("idChat",IdText);
+            i.putExtra("Id",Id);
             startActivity(i);
+
 
         }
 
@@ -137,6 +157,13 @@ public class List extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.bar, menu);
         return true;
+
+
+    }
+
+    @Override
+     public void onBackPressed() {
+        moveTaskToBack(false);
     }
 
     @Override
@@ -144,14 +171,15 @@ public class List extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
+                session.logoutUser();
                 return true;
 
-            case R.id.action_favorite:
+          /*  case R.id.action_favorite:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
 
                 session.logoutUser();
-                return true;
+                return true;*/
 
             default:
                 // If we got here, the user's action was not recognized.

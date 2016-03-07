@@ -30,7 +30,8 @@
             android:layout_height="72dp"
             android:drawableLeft="@drawable/ic_username"
             android:hint="@string/email"
-            android:textColorHint="#0071BC">
+            android:textColorHint="#0071BC"
+            android:textColor="#0071BC">
 
 
         </EditText>
@@ -45,7 +46,8 @@
             android:drawableLeft="@drawable/ic_pwd"
             android:hint="@string/contrasena"
             android:inputType="textPassword"
-            android:textColorHint="#0071BC">
+            android:textColorHint="#0071BC"
+            android:textColor="#0071BC">
         </EditText>
 
         <LinearLayout

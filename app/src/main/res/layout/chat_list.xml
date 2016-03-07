@@ -1,59 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/llaa"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:orientation="vertical"
-              android:gravity="right"
+              android:background="#fff">-->
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/block"
+    android:clickable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#204188"
     >
 
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/v1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="@dimen/pad_10dp"
-        android:background="#dbd6d6"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/pad_5dp"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="#fff"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/pad_15dp"
-        android:paddingRight="@dimen/pad_chat_item"
-        android:paddingTop="@dimen/pad_5dp" >
+        android:paddingRight="@dimen/pad_15dp"
+        android:paddingTop="@dimen/pad_5dp"
+        android:gravity="center">
+
+
 
         <TextView
             android:id="@+id/chatTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="Dr Borja"
             android:textColor="#000000"
-            android:textSize="@dimen/txt_13sp"
-            android:layout_gravity="right"
-            android:layout_marginBottom="5dp"/>
+            android:textSize="@dimen/txt_16sp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1.8"
+            android:gravity="left"/>
+
         <TextView
-            android:id="@+id/lbl2"
+            android:id="@+id/fecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sd"
+            android:text="12/13/2015"
             android:textSize="@dimen/txt_12sp"
             android:maxLines="4"
-            android:layout_gravity="right"
             android:layout_marginTop="-5dp"
-            android:layout_marginRight="5dp"
             android:textIsSelectable="true"
-            android:textColor="#919191"/>
+            android:textColor="#919191"
+            android:gravity="right"
+            />
+
+
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/lbl3"
-        android:layout_width="wrap_content"
+        <LinearLayout
+        android:id="@+id/v2"
+        android:clickable="true"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="@dimen/txt_14sp"
-        android:layout_alignRight="@+id/v1"
-        android:layout_below="@+id/v1"
-        android:layout_marginTop="@dimen/pad_5dp"
-        android:layout_marginRight="@dimen/pad_20dp"
-        />
+
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/pad_15dp"
+        android:paddingRight="@dimen/pad_15dp"
+        android:gravity="center">
+
+
+
+        <TextView
+            android:id="@+id/mensajeChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Este es un mensaje que va aestar en el chat..."
+            android:textColor="#727272"
+            android:textSize="@dimen/txt_14sp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:gravity="left"/>
+
+
+
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/v3"
+            android:clickable="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/pad_5dp"
+            android:paddingLeft="@dimen/pad_15dp"
+            android:paddingRight="@dimen/pad_15dp"
+            android:gravity="center">
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="#727272"/>
+
+
+
+        </LinearLayout>
+
 </LinearLayout>
+
+
+<!--</LinearLayout>-->
