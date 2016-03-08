@@ -43,7 +43,4 @@ public interface MyApiEndpointInterface {
     Call<Boolean> AsignarUser(@Query("usuario") String usuario);
 
 
-
-
-
 }

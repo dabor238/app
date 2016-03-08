@@ -40,6 +40,7 @@
         </activity>
         <activity
             android:name=".Conversacion"
+
             android:parentActivityName=".List"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
@@ -55,3 +56,5 @@
     </application>
 
 </manifest>
+
+    <!--in the .conversacion para que la imagen se mantenga, pero no funciona como lo esperado android:windowSoftInputMode="adjustPan|stateVisible"-->

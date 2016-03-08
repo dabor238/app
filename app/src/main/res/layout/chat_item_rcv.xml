@@ -1,51 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/llaa"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:orientation="vertical"
-    >
+              android:gravity="left">
 
     <LinearLayout
         android:id="@+id/v1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/pad_10dp"
-        android:background="@drawable/msm_doctor"
+        android:background="@drawable/m21"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingBottom="@dimen/pad_5dp"
-        android:paddingLeft="@dimen/pad_chat_item"
+        android:paddingLeft="@dimen/pad_15dp"
         android:paddingTop="@dimen/pad_5dp"
-        android:layout_marginTop="@dimen/pad_5dp">
+        android:layout_marginTop="@dimen/pad_5dp"
+        android:layout_marginBottom="@dimen/pad_5dp">
 
         <TextView
             android:id="@+id/lbl1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@color/main_color_gray_dk"
-            android:textSize="@dimen/txt_13sp" />
+            android:text="text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_16sp"
+            android:paddingTop="@dimen/pad_5dp"
+            android:layout_marginRight="@dimen/pad_40dp"/>
         <TextView
             android:id="@+id/lbl2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="text"
+            android:text="23:03"
             android:textColor="#5c5e5f"
             android:textSize="@dimen/txt_12sp"
-            android:maxLines="4"/>
+            android:maxLines="4"
+            android:paddingBottom="@dimen/pad_5dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="-15dp"/>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/lbl3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/main_color_gray"
-        android:textSize="@dimen/txt_14sp"
-        android:layout_alignRight="@+id/v1"
-        android:layout_below="@+id/v1"
-        android:layout_marginTop="@dimen/pad_5dp"
-        android:layout_marginLeft="@dimen/pad_20dp"
-        />
 </LinearLayout>

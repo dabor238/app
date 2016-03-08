@@ -5,6 +5,10 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="gris">#b8b8b8</color>
+    <color name="backfondo">#F2F2F2</color>
+
+
 
     <color name="main_color_green">#0071BC</color>
     <color name="main_color_gray_dk">#0071BC</color>

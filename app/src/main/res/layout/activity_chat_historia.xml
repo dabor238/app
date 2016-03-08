@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="multidoctores.multidoctores.ChatHistoria"
-    android:background="#000">
+    android:background="@color/white">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar2"
@@ -19,17 +19,18 @@
         />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_width="match_parent" android:layout_height="match_parent"
                 android:id="@+id/scroll"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/my_toolbar2"
-                android:layout_marginTop="@dimen/pad_5dp">
+                android:background="@drawable/fondo">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:id="@+id/content">
+            android:id="@+id/content"
+            >
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
