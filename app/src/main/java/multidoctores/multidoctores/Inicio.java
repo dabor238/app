@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ public class Inicio extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 
 
@@ -53,6 +54,7 @@ public class Inicio extends Activity {
             EditText campoUser = (EditText) findViewById(R.id.user);
             EditText campoClave = (EditText) findViewById(R.id.pwd);
 
+
             String usuario = campoUser.getText().toString();
             String clave = campoClave.getText().toString();
 
@@ -77,7 +79,6 @@ public class Inicio extends Activity {
                         session.createLoginSession(id, correo);
                         Intent i = new Intent(Inicio.this, List.class);
                         startActivity(i);
-
 
                     }else{
 

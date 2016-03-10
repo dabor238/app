@@ -74,6 +74,7 @@ public class Conversacion extends AppCompatActivity {
     SessionManagement session;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,10 +84,13 @@ public class Conversacion extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
-       // ab.setDisplayHomeAsUpEnabled(true);
+       ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowTitleEnabled(true);
 
 
-
+        Bundle extras = getIntent().getExtras();
+        final Boolean estado = extras.getBoolean("estado");
+        final String chatId = extras.getString("IdChat");
 
         session = new SessionManagement(getApplicationContext());
         session.checkLogin();
@@ -98,27 +102,92 @@ public class Conversacion extends AppCompatActivity {
 
 
 
-        String BASE_URL = "http://www.multidoctores.com";
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
-        Call<Boolean> call = apiService.AsignarUser(usuario);
-
-        call.enqueue(new Callback<Boolean>() {
-            @Override
-            public void onResponse(Response<Boolean> response, Retrofit retrofit) {
 
 
-            }
+        if(estado){
 
-            @Override
-            public void onFailure(Throwable t) {
-                // Log error here since request failed
-            }
-        });
+
+
+            String BASE_URL = "http://www.multidoctores.com";
+            final Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+
+            MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+
+
+            Call<itemHistoria[]> call = apiService.getChatHistoria(chatId);
+
+            call.enqueue(new Callback<itemHistoria[]>() {
+                @Override
+                public void onResponse(Response<itemHistoria[]> response, Retrofit retrofit) {
+
+                    itemHistoria[] userPres = response.body();
+
+                    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
+
+                    for (itemHistoria u : userPres) {
+
+                        LayoutInflater inflater = LayoutInflater.from(Conversacion.this);
+
+                        if (u.isEscribe()) {
+                            View inflatedLayout = inflater.inflate(R.layout.chat_item_rcv, null, false);
+                            TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                            lbl.setText(u.getMensaje());
+                            linearLayout.addView(inflatedLayout);
+
+                        } else {
+
+                            View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
+                            TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                            lbl.setText(u.getMensaje());
+                            linearLayout.addView(inflatedLayout);
+
+
+                        }
+
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    Toast.makeText(getApplicationContext(), "no conecta", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            });
+
+        }else{
+
+
+                String BASE_URL = "http://www.multidoctores.com";
+                final Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+                Call<Boolean> call = apiService.AsignarUser(usuario);
+
+                call.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Response<Boolean> response, Retrofit retrofit) {
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        // Log error here since request failed
+                    }
+                });
+
+        }
 
 
 
@@ -151,7 +220,7 @@ public class Conversacion extends AppCompatActivity {
                                 linearLayout.addView(valueTV2);*/
                                 String doctor = "doctor1@multidoctores.com";
 
-                                if(who.equals(doctor)) {
+                                if (who.equals(doctor)) {
                                     String recibeMsm = message;
                                     LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
 
@@ -167,22 +236,15 @@ public class Conversacion extends AppCompatActivity {
                                     mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);
 
 
-
-
-
-
                                     //
 
 
-
-
-                                        sendNotification(message);
+                                    sendNotification(message,chatId,estado);
 
                                     //
 
 
                                 }
-
 
 
                             }
@@ -292,10 +354,12 @@ public class Conversacion extends AppCompatActivity {
 
 
 
-    private void sendNotification(String message) {
-
+    private void sendNotification(String message, String chatId, boolean estado) {
+        int color = getResources().getColor(R.color.main_color_green); //0071bc
         Intent intent = new Intent(getApplicationContext(), Conversacion.class);
         intent.putExtra("Message", message);
+        intent.putExtra("estado", estado);
+        intent.putExtra("IdChat", chatId);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0,
                 intent, PendingIntent.FLAG_ONE_SHOT);
@@ -303,9 +367,10 @@ public class Conversacion extends AppCompatActivity {
         Uri defaultSoundUri = RingtoneManager
                 .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(
-                getApplicationContext()).setSmallIcon(R.drawable.icon)
+                getApplicationContext()).setSmallIcon(R.drawable.multidoapp)
                 .setContentTitle("Multidoctores").setContentText(message)
                 .setAutoCancel(true).setSound(defaultSoundUri)
+                .setColor(color)
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

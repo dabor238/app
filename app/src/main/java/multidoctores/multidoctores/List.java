@@ -30,6 +30,9 @@ import retrofit.Retrofit;
 public class List extends AppCompatActivity {
 
     SessionManagement session;
+    Button btn_nuevaConsulta;
+    boolean estado;
+    String IdChat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +42,9 @@ public class List extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar2);
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayShowTitleEnabled(false);
+        ab.setDisplayShowTitleEnabled(true);
 
-        Button btn_nuevaConsulta = (Button)findViewById(R.id.nuevaConsulta);
+        btn_nuevaConsulta = (Button)findViewById(R.id.nuevaConsulta);
         btn_nuevaConsulta.setOnClickListener(new InicioClickListener());
         session = new SessionManagement(getApplicationContext());
         session.checkLogin();
@@ -77,7 +80,7 @@ public class List extends AppCompatActivity {
 
                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.contenedor);
 
-                for(ItemChat u: userPres){
+                for (ItemChat u : userPres) {
 
                     LayoutInflater inflater = LayoutInflater.from(List.this);
                     View inflatedLayout = inflater.inflate(R.layout.chat_list, null, false);
@@ -96,13 +99,7 @@ public class List extends AppCompatActivity {
                     linearLayout.addView(inflatedLayout);
 
 
-
                 }
-
-
-
-
-
 
 
             }
@@ -114,8 +111,44 @@ public class List extends AppCompatActivity {
             }
 
 
-
         });
+
+
+
+
+
+            Call<itemActivo> call2 = apiService.getActivo(idUser);
+
+                call2.enqueue(new Callback<itemActivo>() {
+                @Override
+                public void onResponse(Response<itemActivo> response, Retrofit retrofit) {
+
+                    itemActivo activo = response.body();
+                    if(activo.isActivo()){
+                        estado = true;
+                        IdChat = activo.getIdChat();
+
+                        btn_nuevaConsulta.setText("Chat activo");
+
+
+                    }else{
+                        estado = false;
+                        IdChat = activo.getIdChat();
+                        btn_nuevaConsulta.setText("Nueva consulta");
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+
+            });
 
     }
 
@@ -148,7 +181,10 @@ public class List extends AppCompatActivity {
         public void onClick(View v){
 
 
+
             Intent i = new Intent(List.this, Conversacion.class);
+            i.putExtra("estado",estado);
+            i.putExtra("IdChat",IdChat);
             startActivity(i);
         }
     }

@@ -33,6 +33,9 @@ public interface MyApiEndpointInterface {
     @GET("/api/Usuarios/arreglo")
     Call<Usuarios> getVarios();
 
+    @GET("/api/Usuarios/chatActivo")
+    Call<itemActivo> getActivo(@Query("idUser") String idUser);
+
     @POST("/api/usuarios/newUserApp")
     Call<Boolean> createUser(@Query("nameNew") String username,@Query("passNew") String pass,@Query("emailNew") String email);
 

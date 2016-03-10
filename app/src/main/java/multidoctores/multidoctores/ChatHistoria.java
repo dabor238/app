@@ -31,7 +31,7 @@ public class ChatHistoria extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar2);
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
-       // ab.setDisplayShowTitleEnabled(true);
+       ab.setDisplayShowTitleEnabled(true);
         ab.setDisplayHomeAsUpEnabled(true);
 
 
