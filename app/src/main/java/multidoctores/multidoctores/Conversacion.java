@@ -162,6 +162,9 @@ public class Conversacion extends AppCompatActivity {
 
             });
 
+            /*ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+            mainScrollView.fullScroll(View.FOCUS_DOWN);*/
+
         }else{
 
 
@@ -232,8 +235,11 @@ public class Conversacion extends AppCompatActivity {
                                     lbl2.setText(hora);
                                     linearLayout.addView(inflatedLayout);
 
-                                    ScrollView mainScrollView = (ScrollView) findViewById(R.id.scroll);
-                                    mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                                   /* ScrollView mainScrollView = (ScrollView) findViewById(R.id.scroll);
+                                    mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);*/
+
+                                        ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+                                     mainScrollView.fullScroll(View.FOCUS_DOWN);
 
 
                                     //
@@ -295,8 +301,14 @@ public class Conversacion extends AppCompatActivity {
             lbl2.setText(strDate);
             linearLayout.addView(inflatedLayout);
 
+           /* ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+            mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);*/
+
+
             ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
-            mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            mainScrollView.fullScroll(View.FOCUS_DOWN);
+
+
 
 
 
