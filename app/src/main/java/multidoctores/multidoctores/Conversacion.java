@@ -92,11 +92,6 @@ public class Conversacion extends AppCompatActivity {
        ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowTitleEnabled(true);
 
-
-      //  Bundle extras = getIntent().getExtras();
-       // estado = extras.getBoolean("estado");
-       // chatId = extras.getString("IdChat");
-
         session = new SessionManagement(getApplicationContext());
         session.checkLogin();
 
@@ -227,110 +222,7 @@ public class Conversacion extends AppCompatActivity {
         });
 
 
-       // if(estado){
 
-
-
-            /*String BASE_URL = "http://www.multidoctores.com";
-            final Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-
-            MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);*/
-
-
-            /*Call<itemHistoria[]> call = apiService.getChatHistoria(chatId);
-
-            call.enqueue(new Callback<itemHistoria[]>() {
-                @Override
-                public void onResponse(Response<itemHistoria[]> response, Retrofit retrofit) {
-
-                    itemHistoria[] userPres = response.body();
-
-                    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
-
-                    for (itemHistoria u : userPres) {
-
-                        LayoutInflater inflater = LayoutInflater.from(Conversacion.this);
-
-                        if (u.isEscribe()) {
-                            View inflatedLayout = inflater.inflate(R.layout.chat_item_rcv, null, false);
-                            TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
-                            lbl.setText(u.getMensaje());
-                            linearLayout.addView(inflatedLayout);
-
-                        } else {
-
-                            View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
-                            TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
-                            lbl.setText(u.getMensaje());
-                            linearLayout.addView(inflatedLayout);
-
-
-                        }
-
-                    }
-
-                    final ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
-                                   *//* mainScrollView.fullScroll(View.FOCUS_DOWN);*//*
-                    mainScrollView.post(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            final EditText mensaje1 = (EditText) findViewById(R.id.mensaje);
-                            *//*mensaje1.setText("");
-                            mensaje1.requestFocus();*//*
-                            *//*InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.showSoftInput(mensaje1, InputMethodManager.SHOW_IMPLICIT);*//*
-
-                            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(mensaje1.getWindowToken(), 0);
-                            mainScrollView.fullScroll(View.FOCUS_DOWN);
-                        }
-                    });
-
-
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-                    Toast.makeText(getApplicationContext(), "no conecta", Toast.LENGTH_SHORT).show();
-
-                }
-
-
-            });*/
-
-
-
-       // }else{
-
-
-                /*String BASE_URL = "http://www.multidoctores.com";
-                final Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);*/
-               /* Call<Boolean> call = apiService.AsignarUser(usuario);
-
-                call.enqueue(new Callback<Boolean>() {
-                    @Override
-                    public void onResponse(Response<Boolean> response, Retrofit retrofit) {
-
-
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-                        // Log error here since request failed
-                    }
-                });*/
-
-       // }
 
 
 
