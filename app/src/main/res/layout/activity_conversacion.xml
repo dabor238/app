@@ -32,8 +32,8 @@
 
                 android:id="@+id/scroll"
                 android:fillViewport="true"
-                android:layout_above="@+id/linearLayout"
-                android:layout_below="@+id/my_toolbar">
+                android:layout_below="@+id/my_toolbar"
+                android:layout_above="@+id/linearLayout">
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -33,6 +33,7 @@ public class List extends AppCompatActivity {
     Button btn_nuevaConsulta;
     boolean estado;
     String IdChat;
+    String idUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class List extends AppCompatActivity {
         HashMap<String, String> user = session.getUserDetails();
 
         // name
-        String idUser = user.get(SessionManagement.KEY_NAME);
+         idUser = user.get(SessionManagement.KEY_NAME);
 
         // email
         String email = user.get(SessionManagement.KEY_EMAIL);
@@ -183,8 +184,8 @@ public class List extends AppCompatActivity {
 
 
             Intent i = new Intent(List.this, Conversacion.class);
-            i.putExtra("estado",estado);
-            i.putExtra("IdChat",IdChat);
+          /*  i.putExtra("estado",estado);
+            i.putExtra("IdChat",IdChat);*/
             startActivity(i);
         }
     }
@@ -200,6 +201,56 @@ public class List extends AppCompatActivity {
     @Override
      public void onBackPressed() {
         moveTaskToBack(false);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+
+        String BASE_URL = "http://www.multidoctores.com";
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+
+
+
+        Call<itemActivo> call2 = apiService.getActivo(idUser);
+
+        call2.enqueue(new Callback<itemActivo>() {
+            @Override
+            public void onResponse(Response<itemActivo> response, Retrofit retrofit) {
+
+                itemActivo activo = response.body();
+                if (activo.isActivo()) {
+                    estado = true;
+                    IdChat = activo.getIdChat();
+
+                    btn_nuevaConsulta.setText("Chat activo");
+
+
+                } else {
+                    estado = false;
+                    IdChat = activo.getIdChat();
+                    btn_nuevaConsulta.setText("Nueva consulta");
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
+
     }
 
     @Override

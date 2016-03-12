@@ -25,6 +25,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -70,7 +72,10 @@ public class Conversacion extends AppCompatActivity {
     private Handler mHandler; // to display Toast message
     SignalRService servicio = new SignalRService();
     TextView resultado;
-
+    boolean estado;
+    String idUser;
+    String chatId;
+    String usuario;
     SessionManagement session;
 
 
@@ -88,37 +93,155 @@ public class Conversacion extends AppCompatActivity {
         ab.setDisplayShowTitleEnabled(true);
 
 
-        Bundle extras = getIntent().getExtras();
-        final Boolean estado = extras.getBoolean("estado");
-        final String chatId = extras.getString("IdChat");
+      //  Bundle extras = getIntent().getExtras();
+       // estado = extras.getBoolean("estado");
+       // chatId = extras.getString("IdChat");
 
         session = new SessionManagement(getApplicationContext());
         session.checkLogin();
 
         // get user data from session
         HashMap<String, String> user = session.getUserDetails();
-
-        String usuario = user.get(SessionManagement.KEY_EMAIL);
-
-
+        idUser = user.get(SessionManagement.KEY_NAME);
+        usuario = user.get(SessionManagement.KEY_EMAIL);
 
 
 
-        if(estado){
+        String BASE_URL = "http://www.multidoctores.com";
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        final MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+        Call<itemActivo> call2 = apiService.getActivo(idUser);
+
+        call2.enqueue(new Callback<itemActivo>() {
+            @Override
+            public void onResponse(Response<itemActivo> response, Retrofit retrofit) {
+
+                itemActivo activo = response.body();
+                if(activo.isActivo()){
+
+                    chatId = activo.getIdChat();
+                    estado = true;
+
+                    Call<itemHistoria[]> call = apiService.getChatHistoria(chatId);
+
+                    call.enqueue(new Callback<itemHistoria[]>() {
+                        @Override
+                        public void onResponse(Response<itemHistoria[]> response, Retrofit retrofit) {
+
+                            itemHistoria[] userPres = response.body();
+
+                            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
+
+                            for (itemHistoria u : userPres) {
+
+                                LayoutInflater inflater = LayoutInflater.from(Conversacion.this);
+
+                                if (u.isEscribe()) {
+                                    View inflatedLayout = inflater.inflate(R.layout.chat_item_rcv, null, false);
+                                    TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                                    lbl.setText(u.getMensaje());
+                                    linearLayout.addView(inflatedLayout);
+
+                                } else {
+
+                                    View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
+                                    TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                                    lbl.setText(u.getMensaje());
+                                    linearLayout.addView(inflatedLayout);
+
+
+                                }
+
+                            }
+
+                            final ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+                                   /* mainScrollView.fullScroll(View.FOCUS_DOWN);*/
+                            mainScrollView.post(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    final EditText mensaje1 = (EditText) findViewById(R.id.mensaje);
+                            /*mensaje1.setText("");
+                            mensaje1.requestFocus();*/
+                            /*InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.showSoftInput(mensaje1, InputMethodManager.SHOW_IMPLICIT);*/
+
+                                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    imm.hideSoftInputFromWindow(mensaje1.getWindowToken(), 0);
+                                    mainScrollView.fullScroll(View.FOCUS_DOWN);
+                                }
+                            });
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            Toast.makeText(getApplicationContext(), "no conecta", Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+                    });
 
 
 
-            String BASE_URL = "http://www.multidoctores.com";
+                }else{
+
+                    chatId = activo.getIdChat();
+                    estado = false;
+
+                    Call<Boolean> call = apiService.AsignarUser(usuario);
+
+                    call.enqueue(new Callback<Boolean>() {
+                        @Override
+                        public void onResponse(Response<Boolean> response, Retrofit retrofit) {
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            // Log error here since request failed
+                        }
+                    });
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+
+        });
+
+
+       // if(estado){
+
+
+
+            /*String BASE_URL = "http://www.multidoctores.com";
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
 
-            MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+            MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);*/
 
 
-            Call<itemHistoria[]> call = apiService.getChatHistoria(chatId);
+            /*Call<itemHistoria[]> call = apiService.getChatHistoria(chatId);
 
             call.enqueue(new Callback<itemHistoria[]>() {
                 @Override
@@ -150,6 +273,24 @@ public class Conversacion extends AppCompatActivity {
 
                     }
 
+                    final ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+                                   *//* mainScrollView.fullScroll(View.FOCUS_DOWN);*//*
+                    mainScrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            final EditText mensaje1 = (EditText) findViewById(R.id.mensaje);
+                            *//*mensaje1.setText("");
+                            mensaje1.requestFocus();*//*
+                            *//*InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.showSoftInput(mensaje1, InputMethodManager.SHOW_IMPLICIT);*//*
+
+                            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(mensaje1.getWindowToken(), 0);
+                            mainScrollView.fullScroll(View.FOCUS_DOWN);
+                        }
+                    });
+
 
                 }
 
@@ -160,22 +301,21 @@ public class Conversacion extends AppCompatActivity {
                 }
 
 
-            });
-
-            /*ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
-            mainScrollView.fullScroll(View.FOCUS_DOWN);*/
-
-        }else{
+            });*/
 
 
-                String BASE_URL = "http://www.multidoctores.com";
+
+       // }else{
+
+
+                /*String BASE_URL = "http://www.multidoctores.com";
                 final Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
-                Call<Boolean> call = apiService.AsignarUser(usuario);
+                MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);*/
+               /* Call<Boolean> call = apiService.AsignarUser(usuario);
 
                 call.enqueue(new Callback<Boolean>() {
                     @Override
@@ -188,9 +328,9 @@ public class Conversacion extends AppCompatActivity {
                     public void onFailure(Throwable t) {
                         // Log error here since request failed
                     }
-                });
+                });*/
 
-        }
+       // }
 
 
 
@@ -238,14 +378,27 @@ public class Conversacion extends AppCompatActivity {
                                    /* ScrollView mainScrollView = (ScrollView) findViewById(R.id.scroll);
                                     mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);*/
 
-                                        ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
-                                     mainScrollView.fullScroll(View.FOCUS_DOWN);
+
 
 
                                     //
 
 
-                                    sendNotification(message,chatId,estado);
+                                    sendNotification(message, chatId, estado);
+
+                                    final ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+                                   /* mainScrollView.fullScroll(View.FOCUS_DOWN);*/
+                                    mainScrollView.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            mainScrollView.fullScroll(View.FOCUS_DOWN);
+
+
+                                        }
+                                    });
+
+
+
 
                                     //
 
@@ -273,7 +426,7 @@ public class Conversacion extends AppCompatActivity {
 
         @Override
         public void onClick(View v){
-            EditText mensaje1 = (EditText) findViewById(R.id.mensaje);
+            final EditText mensaje1 = (EditText) findViewById(R.id.mensaje);
             String message = mensaje1.getText().toString();
             session = new SessionManagement(getApplicationContext());
             session.checkLogin();
@@ -283,8 +436,6 @@ public class Conversacion extends AppCompatActivity {
 
             String usuario = user.get(SessionManagement.KEY_EMAIL);
             servicio.sendMessage(message, usuario);
-            mensaje1.setText("");
-            mensaje1.requestFocus();
 
 
 
@@ -305,8 +456,19 @@ public class Conversacion extends AppCompatActivity {
             mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);*/
 
 
-            ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
-            mainScrollView.fullScroll(View.FOCUS_DOWN);
+            final ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+                                   /* mainScrollView.fullScroll(View.FOCUS_DOWN);*/
+            mainScrollView.post(new Runnable() {
+                @Override
+                public void run() {
+                    mainScrollView.fullScroll(View.FOCUS_DOWN);
+
+                    mensaje1.setText("");
+                    mensaje1.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(mensaje1, InputMethodManager.SHOW_IMPLICIT);
+                }
+            });
 
 
 
@@ -336,6 +498,8 @@ public class Conversacion extends AppCompatActivity {
         inflater.inflate(R.menu.bar, menu);
         return true;
     }
+
+
 
 
     @Override
