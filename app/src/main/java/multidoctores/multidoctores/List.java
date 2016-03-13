@@ -17,6 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -85,8 +88,24 @@ public class List extends AppCompatActivity {
 
                     LayoutInflater inflater = LayoutInflater.from(List.this);
                     View inflatedLayout = inflater.inflate(R.layout.chat_list, null, false);
-                    TextView lbl = (TextView) inflatedLayout.findViewById(R.id.mensajeChat);
-                    lbl.setText(u.getIdChat());
+
+
+                    String date = u.getFecha();
+                    String[] parts = date.split("-");
+                    String[] dia = parts[2].split("T");
+                    String unido = dia[0] + "/" + parts[1] + "/" +parts[0];
+
+                    TextView fecha = (TextView) inflatedLayout.findViewById(R.id.fecha);
+                    fecha.setText(unido);
+
+                    TextView titulo = (TextView) inflatedLayout.findViewById(R.id.mensajeChat);
+                    titulo.setText(u.getTitulo());
+
+                    TextView doctor = (TextView) inflatedLayout.findViewById(R.id.chatTitle);
+                    doctor.setText(u.getDoctor());
+
+
+
                     LinearLayout lista = (LinearLayout) inflatedLayout.findViewById(R.id.v1);
                     lista.setId(Integer.parseInt(u.getIdChat()));
                     lista.setClickable(true);
