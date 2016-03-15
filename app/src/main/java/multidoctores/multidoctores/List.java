@@ -61,7 +61,7 @@ public class List extends AppCompatActivity {
 
         // email
         String email = user.get(SessionManagement.KEY_EMAIL);
-        Toast.makeText(getApplicationContext(), email, Toast.LENGTH_SHORT).show();
+
 
 
         String BASE_URL = "http://www.multidoctores.com";
@@ -72,7 +72,49 @@ public class List extends AppCompatActivity {
 
 
         MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+        llamarHistorial(apiService);
 
+
+        comprobarActivo(apiService);
+
+    }
+
+    private void comprobarActivo(MyApiEndpointInterface apiService) {
+        Call<itemActivo> call2 = apiService.getActivo(idUser);
+
+        call2.enqueue(new Callback<itemActivo>() {
+        @Override
+        public void onResponse(Response<itemActivo> response, Retrofit retrofit) {
+
+            itemActivo activo = response.body();
+            if(activo.isActivo()){
+                estado = true;
+                IdChat = activo.getIdChat();
+
+                btn_nuevaConsulta.setText("Tiene un chat activo");
+
+
+            }else{
+                estado = false;
+                IdChat = activo.getIdChat();
+                btn_nuevaConsulta.setText("Iniciar nueva consulta");
+            }
+
+
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+            Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+
+    });
+    }
+
+    private void llamarHistorial(MyApiEndpointInterface apiService) {
         //new Callback<List<CustomObject>>() {
         Call<ItemChat[]> call = apiService.getChatList(idUser);
 
@@ -102,7 +144,8 @@ public class List extends AppCompatActivity {
                     titulo.setText(u.getTitulo());
 
                     TextView doctor = (TextView) inflatedLayout.findViewById(R.id.chatTitle);
-                    doctor.setText(u.getDoctor());
+                    String nombreDoc = u.getDoctor() +" "+ u.getApellido();
+                    doctor.setText(nombreDoc);
 
 
 
@@ -126,52 +169,13 @@ public class List extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(getApplicationContext(), "no conecta", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Problemas al conectar, intente de nuevo.", Toast.LENGTH_SHORT).show();
 
             }
 
 
         });
-
-
-
-
-
-            Call<itemActivo> call2 = apiService.getActivo(idUser);
-
-                call2.enqueue(new Callback<itemActivo>() {
-                @Override
-                public void onResponse(Response<itemActivo> response, Retrofit retrofit) {
-
-                    itemActivo activo = response.body();
-                    if(activo.isActivo()){
-                        estado = true;
-                        IdChat = activo.getIdChat();
-
-                        btn_nuevaConsulta.setText("Chat activo");
-
-
-                    }else{
-                        estado = false;
-                        IdChat = activo.getIdChat();
-                        btn_nuevaConsulta.setText("Nueva consulta");
-                    }
-
-
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-                    Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
-
-                }
-
-
-
-            });
-
     }
-
 
 
     public class clickChatHistoria implements View.OnClickListener {
@@ -237,38 +241,7 @@ public class List extends AppCompatActivity {
         MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
 
 
-
-        Call<itemActivo> call2 = apiService.getActivo(idUser);
-
-        call2.enqueue(new Callback<itemActivo>() {
-            @Override
-            public void onResponse(Response<itemActivo> response, Retrofit retrofit) {
-
-                itemActivo activo = response.body();
-                if (activo.isActivo()) {
-                    estado = true;
-                    IdChat = activo.getIdChat();
-
-                    btn_nuevaConsulta.setText("Chat activo");
-
-
-                } else {
-                    estado = false;
-                    IdChat = activo.getIdChat();
-                    btn_nuevaConsulta.setText("Nueva consulta");
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
-
-            }
-
-
-        });
+        comprobarActivo(apiService);
 
     }
 

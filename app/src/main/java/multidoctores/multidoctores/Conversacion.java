@@ -257,44 +257,46 @@ public class Conversacion extends AppCompatActivity {
 
                                 if (who.equals(doctor)) {
                                     String recibeMsm = message;
-                                    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
+                                    if (!"Fin-del-chat".equals(message)) {
 
-                                    LayoutInflater inflater = LayoutInflater.from(Conversacion.this);
-                                    View inflatedLayout = inflater.inflate(R.layout.chat_item_rcv, null, false);
-                                    TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
-                                    lbl.setText(recibeMsm);
-                                    TextView lbl2 = (TextView) inflatedLayout.findViewById(R.id.lbl2);
-                                    lbl2.setText(hora);
-                                    linearLayout.addView(inflatedLayout);
+                                        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
+
+                                        LayoutInflater inflater = LayoutInflater.from(Conversacion.this);
+                                        View inflatedLayout = inflater.inflate(R.layout.chat_item_rcv, null, false);
+                                        TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                                        lbl.setText(recibeMsm);
+                                        TextView lbl2 = (TextView) inflatedLayout.findViewById(R.id.lbl2);
+                                        lbl2.setText(hora);
+                                        linearLayout.addView(inflatedLayout);
 
                                    /* ScrollView mainScrollView = (ScrollView) findViewById(R.id.scroll);
                                     mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);*/
 
 
+                                        //
 
 
-                                    //
+                                        sendNotification(message, chatId, estado);
 
-
-                                    sendNotification(message, chatId, estado);
-
-                                    final ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+                                        final ScrollView mainScrollView = (ScrollView) findViewById(R.id.scroll);
                                    /* mainScrollView.fullScroll(View.FOCUS_DOWN);*/
-                                    mainScrollView.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            mainScrollView.fullScroll(View.FOCUS_DOWN);
+                                        mainScrollView.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                mainScrollView.fullScroll(View.FOCUS_DOWN);
 
 
-                                        }
-                                    });
+                                            }
+                                        });
 
 
+                                        //
 
-
-                                    //
-
-
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "Gracias por usar Multidoctores", Toast.LENGTH_LONG).show();
+                                        Intent i = new Intent(Conversacion.this, Gracias.class);
+                                        startActivity(i);
+                                    }
                                 }
 
 

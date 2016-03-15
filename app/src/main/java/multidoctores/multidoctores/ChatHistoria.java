@@ -63,20 +63,23 @@ public class ChatHistoria extends AppCompatActivity {
                     for (itemHistoria u : userPres) {
 
                         LayoutInflater inflater = LayoutInflater.from(ChatHistoria.this);
+                        if (!"Fin-del-chat".equals(u.getMensaje())){
 
-                        if(u.isEscribe()){
-                            View inflatedLayout = inflater.inflate(R.layout.chat_item_rcv, null, false);
-                            TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
-                            lbl.setText(u.getMensaje());
-                            linearLayout.addView(inflatedLayout);
+                            if (u.isEscribe()) {
+                                View inflatedLayout = inflater.inflate(R.layout.chat_item_rcv, null, false);
+                                TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                                lbl.setText(u.getMensaje());
+                                linearLayout.addView(inflatedLayout);
 
-                        }else{
+                            } else {
 
-                            View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
-                            TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
-                            lbl.setText(u.getMensaje());
-                            linearLayout.addView(inflatedLayout);
+                                View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
+                                TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                                lbl.setText(u.getMensaje());
+                                linearLayout.addView(inflatedLayout);
 
+
+                            }
 
                         }
 

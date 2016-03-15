@@ -48,6 +48,12 @@ public class Registrar extends Activity {
 
 
 
+    @Override
+    public void onStop() {
+        super.onStop();
+
+    }
+
 
     class ClickOnClickListener implements View.OnClickListener{
 

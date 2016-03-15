@@ -10,6 +10,7 @@ public class ItemChat {
     private String Fecha;
     private String Titulo;
     private String Doctor;
+    private String Apellido;
 
 
 
@@ -44,5 +45,13 @@ public class ItemChat {
 
     public void setDoctor(String doctor) {
         Doctor = doctor;
+    }
+
+    public String getApellido() {
+        return Apellido;
+    }
+
+    public void setApellido(String apellido) {
+        Apellido = apellido;
     }
 }
