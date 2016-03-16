@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -39,7 +40,7 @@
         </activity>
         <activity
             android:name=".Conversacion"
-            android:parentActivityName=".List"
+
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity
@@ -49,8 +50,7 @@
         </activity>
         <activity
             android:name=".ChatHistoria"
-            android:label="@string/app_historia"
-            android:parentActivityName=".List">
+            android:label="@string/app_historia">
         </activity>
         <activity android:name=".Gracias">
         </activity>

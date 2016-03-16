@@ -23,7 +23,7 @@
                 android:id="@+id/scroll"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/my_toolbar2"
-                android:background="@drawable/fondo">
+                android:background="@drawable/fondo2">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

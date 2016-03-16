@@ -16,15 +16,16 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#0071bc"
-        android:elevation="4dp"
+
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:src="@drawable/fondo"
+        android:src="@drawable/fondo2"
         android:scaleType="matrix"
+
         />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
