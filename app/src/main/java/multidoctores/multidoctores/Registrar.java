@@ -38,6 +38,7 @@ public class Registrar extends Activity {
         session = new SessionManagement(getApplicationContext());
 
         if(session.isLoggedIn()){
+            this.finish();
             Intent i = new Intent(Registrar.this, List.class);
             startActivity(i);
 

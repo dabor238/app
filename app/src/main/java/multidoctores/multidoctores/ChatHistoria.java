@@ -31,7 +31,9 @@ public class ChatHistoria extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar2);
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
-       ab.setDisplayShowTitleEnabled(true);
+
+        ab.setDisplayShowTitleEnabled(true);
+        ab.setDisplayShowHomeEnabled(true);
         ab.setDisplayHomeAsUpEnabled(true);
 
 
@@ -114,6 +116,10 @@ public class ChatHistoria extends AppCompatActivity {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
                 session.logoutUser();
+                return true;
+
+            case android.R.id.home:
+                onBackPressed();
                 return true;
 
           /*  case R.id.action_favorite:

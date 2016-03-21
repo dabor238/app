@@ -404,6 +404,10 @@ public class Conversacion extends AppCompatActivity {
                 session.logoutUser();
                 return true;
 
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
           /*  case R.id.action_favorite:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...

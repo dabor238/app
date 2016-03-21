@@ -188,8 +188,10 @@ public class List extends AppCompatActivity {
             String Id = String.valueOf(Linear.getId());
 
             Intent i = new Intent(getApplicationContext(), ChatHistoria.class);
-            i.putExtra("Id",Id);
+            i.putExtra("Id", Id);
+
             startActivity(i);
+
 
 
         }
