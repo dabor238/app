@@ -101,7 +101,6 @@ public class Conversacion extends AppCompatActivity {
         usuario = user.get(SessionManagement.KEY_EMAIL);
 
 
-
         String BASE_URL = "http://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -198,6 +197,8 @@ public class Conversacion extends AppCompatActivity {
                         public void onResponse(Response<Boolean> response, Retrofit retrofit) {
 
 
+
+
                         }
 
                         @Override
@@ -237,22 +238,11 @@ public class Conversacion extends AppCompatActivity {
 
 
 
-                     /*   Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
-                        LinearLayout linearLayout1 = (LinearLayout)findViewById(R.id.LinearRellenar);
-                        TextView valueTV2 = new TextView(Conversacion.this);
-                        valueTV2.setText(message);
-                        valueTV2.setTextColor(getResources().getColor(R.color.white));
-                        linearLayout1.addView(valueTV2);*/
-                        //System.out.println(message);
                         runOnUiThread(new Runnable() {
 
                             public void run() {
-                               /* LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
-                                TextView valueTV2 = new TextView(Conversacion.this);
-                                valueTV2.setText(message);
-                                valueTV2.setTextColor(getResources().getColor(R.color.white));
-                                linearLayout.addView(valueTV2);*/
+
                                 String doctor = "doctor1@multidoctores.com";
 
                                 if (who.equals(doctor)) {
@@ -284,6 +274,11 @@ public class Conversacion extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 mainScrollView.fullScroll(View.FOCUS_DOWN);
+                                                final EditText mensaje1 = (EditText) findViewById(R.id.mensaje);
+
+                                                mensaje1.requestFocus();
+                                                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                imm.showSoftInput(mensaje1, InputMethodManager.SHOW_IMPLICIT);
 
 
                                             }
@@ -322,50 +317,51 @@ public class Conversacion extends AppCompatActivity {
         public void onClick(View v){
             final EditText mensaje1 = (EditText) findViewById(R.id.mensaje);
             String message = mensaje1.getText().toString();
-            session = new SessionManagement(getApplicationContext());
-            session.checkLogin();
+            if( !"".equals(message)) {
+                    session = new SessionManagement(getApplicationContext());
+                    session.checkLogin();
 
-            // get user data from session
-            HashMap<String, String> user = session.getUserDetails();
+                    // get user data from session
+                    HashMap<String, String> user = session.getUserDetails();
 
-            String usuario = user.get(SessionManagement.KEY_EMAIL);
-            servicio.sendMessage(message, usuario);
-
-
-
-            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
-
-            LayoutInflater inflater = LayoutInflater.from(Conversacion.this);
-            View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
-            TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
-            lbl.setText(message);
-            TextView lbl2 = (TextView) inflatedLayout.findViewById(R.id.lbl2);
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-            Date now = new Date();
-            String strDate = sdf.format(now);
-            lbl2.setText(strDate);
-            linearLayout.addView(inflatedLayout);
-
-           /* ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
-            mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);*/
-
-
-            final ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
-                                   /* mainScrollView.fullScroll(View.FOCUS_DOWN);*/
-            mainScrollView.post(new Runnable() {
-                @Override
-                public void run() {
-                    mainScrollView.fullScroll(View.FOCUS_DOWN);
-
-                    mensaje1.setText("");
-                    mensaje1.requestFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(mensaje1, InputMethodManager.SHOW_IMPLICIT);
-                }
-            });
+                    String usuario = user.get(SessionManagement.KEY_EMAIL);
+                    servicio.sendMessage(message, usuario);
 
 
 
+                    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearRellenar);
+
+                    LayoutInflater inflater = LayoutInflater.from(Conversacion.this);
+                    View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
+                    TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                    lbl.setText(message);
+                    TextView lbl2 = (TextView) inflatedLayout.findViewById(R.id.lbl2);
+                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                    Date now = new Date();
+                    String strDate = sdf.format(now);
+                    lbl2.setText(strDate);
+                    linearLayout.addView(inflatedLayout);
+
+                   /* ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+                    mainScrollView.fullScroll(ScrollView.FOCUS_DOWN);*/
+
+
+                    final ScrollView mainScrollView = (ScrollView)findViewById(R.id.scroll);
+                                           /* mainScrollView.fullScroll(View.FOCUS_DOWN);*/
+                    mainScrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainScrollView.fullScroll(View.FOCUS_DOWN);
+
+                            mensaje1.setText("");
+                            mensaje1.requestFocus();
+                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.showSoftInput(mensaje1, InputMethodManager.SHOW_IMPLICIT);
+                        }
+                    });
+
+
+            }
 
 
         }

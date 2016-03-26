@@ -113,7 +113,7 @@ public class Registrar extends Activity {
                             @Override
                             public void onResponse(Response<itemAutentico> response, Retrofit retrofit) {
                                 itemAutentico userPres = response.body();
-                                Toast.makeText(getApplicationContext(), userPres.getIdUsuario(), Toast.LENGTH_LONG).show();
+
                                 if (userPres.isEntra()) {
 
                                     String correo = userPres.getCorreo();
