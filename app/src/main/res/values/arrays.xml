@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sexo">
+        <item value ="0">hombre</item>
+        <item value="1">mujer</item>
+
+    </string-array>
+
+
+
+    <string-array name="dia">
+        <item value ="1">1</item>
+        <item value="2">2</item>
+        <item value="3">3</item>
+        <item value="4">4</item>
+        <item value="5">5</item>
+        <item value="6">6</item>
+        <item value="7">7</item>
+        <item value="8">8</item>
+        <item value="9">9</item>
+        <item value="10">10</item>
+        <item value="11">11</item>
+        <item value="12">12</item>
+        <item value="13">13</item>
+        <item value="14">14</item>
+        <item value="15">15</item>
+        <item value="16">16</item>
+        <item value="17">17</item>
+        <item value="18">18</item>
+        <item value="19">19</item>
+        <item value="20">20</item>
+        <item value="21">21</item>
+        <item value="22">22</item>
+        <item value="23">23</item>
+        <item value="24">24</item>
+        <item value="25">25</item>
+        <item value="26">26</item>
+        <item value="27">27</item>
+        <item value="28">28</item>
+        <item value="29">29</item>
+        <item value="30">30</item>
+        <item value="31">31</item>
+    </string-array>
+
+    <string-array name="mes">
+        <item value ="1">1</item>
+        <item value="2">2</item>
+        <item value="3">3</item>
+        <item value="4">4</item>
+        <item value="5">5</item>
+        <item value="6">6</item>
+        <item value="7">7</item>
+        <item value="8">8</item>
+        <item value="9">9</item>
+        <item value="10">10</item>
+        <item value="11">11</item>
+        <item value="12">12</item>
+
+    </string-array>
+
+
+    <string-array name="anio">
+        <item value ="2016">   2016</item>
+        <item value ="2015">    2015</item>
+        <item value ="2014">    2014</item>
+        <item value ="2013">   2013</item>
+        <item value ="2012">	2012</item>
+        <item value ="2011">	2011</item>
+        <item value ="2010">	2010</item>
+        <item value ="2009">	2009</item>
+        <item value ="2008">	2008</item>
+        <item value ="2007">	2007</item>
+        <item value ="2006">	2006</item>
+        <item value ="2005">	2005</item>
+        <item value ="2004">	2004</item>
+        <item value ="2003">	2003</item>
+        <item value ="2002">	2002</item>
+        <item value ="2001">	2001</item>
+        <item value ="2000">	2000</item>
+        <item value ="1999">	1999</item>
+        <item value ="1998">	1998</item>
+        <item value ="1997">	1997</item>
+        <item value ="1996">	1996</item>
+        <item value ="1995">	1995</item>
+        <item value ="1994">	1994</item>
+        <item value ="1993">	1993</item>
+        <item value ="1992">	1992</item>
+        <item value ="1991">	1991</item>
+        <item value ="1990">	1990</item>
+        <item value ="1989">	1989</item>
+        <item value ="1988">	1988</item>
+        <item value ="1987">	1987</item>
+        <item value ="1986">	1986</item>
+        <item value ="1985">	1985</item>
+        <item value ="1984">	1984</item>
+        <item value ="1983">	1983</item>
+        <item value ="1982">	1982</item>
+        <item value ="1981">	1981</item>
+        <item value ="1980">	1980</item>
+        <item value ="1979">	1979</item>
+        <item value ="1978">	1978</item>
+        <item value ="1977">	1977</item>
+        <item value ="1976">	1976</item>
+        <item value ="1975">	1975</item>
+        <item value ="1974">	1974</item>
+        <item value ="1973">	1973</item>
+        <item value ="1972">	1972</item>
+        <item value ="1971">	1971</item>
+        <item value ="1970">	1970</item>
+        <item value ="1969">	1969</item>
+        <item value ="1968">	1968</item>
+        <item value ="1967">	1967</item>
+        <item value ="1966">	1966</item>
+        <item value ="1965">	1965</item>
+        <item value ="1964">	1964</item>
+        <item value ="1963">	1963</item>
+        <item value ="1962">	1962</item>
+        <item value ="1961">	1961</item>
+        <item value ="1960">	1960</item>
+        <item value ="1959">	1959</item>
+        <item value ="1958">	1958</item>
+        <item value ="1957">	1957</item>
+        <item value ="1956">	1956</item>
+        <item value ="1955">	1955</item>
+        <item value ="1954">	1954</item>
+        <item value ="1953">	1953</item>
+        <item value ="1952">	1952</item>
+        <item value ="1951">	1951</item>
+        <item value ="1950">	1950</item>
+        <item value ="1949">	1949</item>
+        <item value ="1948">	1948</item>
+        <item value ="1947">	1947</item>
+        <item value ="1946">	1946</item>
+        <item value ="1945">	1945</item>
+        <item value ="1944">	1944</item>
+        <item value ="1943">	1943</item>
+        <item value ="1942">	1942</item>
+        <item value ="1941">	1941</item>
+        <item value ="1940">	1940</item>
+        <item value ="1939">	1939</item>
+        <item value ="1938">	1938</item>
+        <item value ="1937">	1937</item>
+        <item value ="1936">	1936</item>
+        <item value ="1935">	1935</item>
+        <item value ="1934">	1934</item>
+        <item value ="1933">	1933</item>
+        <item value ="1932">	1932</item>
+        <item value ="1931">	1931</item>
+        <item value ="1930">	1930</item>
+        <item value ="1929">	1929</item>
+        <item value ="1928">	1928</item>
+        <item value ="1927">	1927</item>
+        <item value ="1926">	1926</item>
+        <item value ="1925">	1925</item>
+        <item value ="1924">	1924</item>
+        <item value ="1923">	1923</item>
+        <item value ="1922">	1922</item>
+        <item value ="1921">	1921</item>
+        <item value ="1920">	1920</item>
+        <item value ="1919">	1919</item>
+        <item value ="1918">	1918</item>
+        <item value ="1917">	1917</item>
+        <item value ="1916">	1916</item>
+        <item value ="1915">	1915</item>
+        <item value ="1914">	1914</item>
+        <item value ="1913">	1913</item>
+        <item value ="1912">	1912</item>
+        <item value ="1911">	1911</item>
+        <item value ="1910">	1910</item>
+
+    </string-array>
+</resources>

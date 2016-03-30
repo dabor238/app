@@ -255,12 +255,12 @@ public class List extends AppCompatActivity {
                 session.logoutUser();
                 return true;
 
-          /*  case R.id.action_favorite:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+            case R.id.action_historial:
+                Intent i = new Intent(getApplicationContext(), Ficha.class);
 
-                session.logoutUser();
-                return true;*/
+                startActivity(i);
+
+                return true;
 
             default:
                 // If we got here, the user's action was not recognized.

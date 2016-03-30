@@ -30,7 +30,8 @@ public class Chat extends Activity {
         setContentView(R.layout.activity_chat);
         resultadoTextView = (TextView)findViewById(R.id.textViewResultado);
 
-       String BASE_URL = "http://www.multidoctores.com";
+        String Mail = "dabor238@gmail.com";
+        String BASE_URL = "http://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -42,7 +43,7 @@ public class Chat extends Activity {
 
 
         MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
-        Call<Usuario> call = apiService.getUser();
+        Call<Usuario> call = apiService.getFicha(Mail);
 
         call.enqueue(new Callback<Usuario>() {
             @Override

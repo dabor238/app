@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="multidoctores.multidoctores.Ficha">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#0071bc"
+
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/titulo"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_toolbar"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textTitulo"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/txt_15sp"/>
+    </LinearLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+
+                android:id="@+id/scroll"
+                android:fillViewport="true"
+                android:layout_below="@+id/titulo"
+               >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Alergias"
+                    android:id="@+id/textView3"
+                    android:layout_below="@+id/Enfermedades"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_above="@+id/Sexo"
+                    android:layout_alignRight="@+id/textView5"
+                    android:layout_alignEnd="@+id/textView5"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/pad_5dp"/>
+
+                <EditText
+                    android:layout_width="236dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Alergias"
+                    android:layout_below="@+id/Enfermedades"
+                    android:layout_alignRight="@+id/Enfermedades"
+                    android:layout_alignEnd="@+id/Enfermedades"
+                    android:layout_toEndOf="@+id/textView3"
+                    android:layout_toRightOf="@+id/textView3"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Enfermedades"
+                    android:id="@+id/textView5"
+                    android:layout_below="@+id/Telefono"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/pad_5dp"/>
+
+                <EditText
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Enfermedades"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Género"
+            android:id="@+id/textView4"
+            android:layout_alignTop="@+id/Sexo"
+            android:layout_toLeftOf="@+id/Alergias"
+            android:layout_alignBottom="@+id/Sexo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/pad_5dp"/>
+
+                <Spinner
+            android:id="@+id/Sexo"
+            android:layout_width="236dp"
+            android:layout_height="38dp"
+            android:layout_below="@+id/Alergias"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:entries="@array/sexo"
+            android:layout_toLeftOf="@+id/guardarFicha"
+            android:layout_toRightOf="@+id/textView3"
+            android:layout_toEndOf="@+id/textView3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Celular"
+            android:id="@+id/textView6"
+            android:layout_above="@+id/textView5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/pad_5dp"/>
+
+                <EditText
+                    android:layout_width="236dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Telefono"
+                    android:layout_gravity="center_horizontal"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Nacimiento"
+                    android:id="@+id/textView7"
+                    android:layout_weight="0.51"
+                    android:layout_marginLeft="@dimen/pad_5dp"/>
+
+                <Spinner
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinner"
+                    android:entries="@array/dia"
+                    android:layout_weight="0.10"
+                    android:touchscreenBlocksFocus="true"/>
+
+                <Spinner
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinner2"
+                    android:entries="@array/mes"
+                    android:layout_weight="0.15"/>
+
+                <Spinner
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinner3"
+                    android:entries="@array/anio"
+                    android:layout_weight="0.15"/>
+            </LinearLayout>
+
+            <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar Ficha"
+        android:id="@+id/guardarFicha"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="74dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/pad_5dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

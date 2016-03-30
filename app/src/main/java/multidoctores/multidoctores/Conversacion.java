@@ -404,12 +404,13 @@ public class Conversacion extends AppCompatActivity {
                 onBackPressed();
                 return true;
 
-          /*  case R.id.action_favorite:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+            case R.id.action_historial:
 
+                Intent i = new Intent(getApplicationContext(), Ficha.class);
 
-                return true;*/
+                startActivity(i);
+
+                return true;
 
             default:
                 // If we got here, the user's action was not recognized.

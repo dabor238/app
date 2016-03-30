@@ -16,8 +16,8 @@ public interface MyApiEndpointInterface {
 
 
 
-    @GET("/api/Usuarios/fichaMedica?Mail=dabor238@gmail.com")
-    Call<Usuario> getUser();
+    @GET("/api/Usuarios/fichaMedica")
+    Call<Usuario> getFicha(@Query("Mail") String Mail);
 
     @GET("/api/usuarios/historial")
     Call<ItemChat[]> getChatList(@Query("idUser") String idUser);
@@ -38,6 +38,10 @@ public interface MyApiEndpointInterface {
 
     @POST("/api/usuarios/newUserApp")
     Call<Boolean> createUser(@Query("nameNew") String username,@Query("passNew") String pass,@Query("emailNew") String email);
+
+    @POST("/api/usuarios/ingresoFicha")
+    Call<Boolean> updateFicha(@Query("usuario") String usuario,@Query("alergia") String alergia,@Query("enfermedad") String enfermedad,@Query("dia") String dia,@Query("mes") String mes,@Query("anio") String anio,@Query("genero") String genero,@Query("celular") String celular,@Query("pais") String pais);
+
 
     @POST("/api/usuarios/recuperando")
     Call<Boolean> RecuperarUser(@Query("mail") String mail);
