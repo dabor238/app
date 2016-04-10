@@ -1,9 +1,12 @@
 package multidoctores.multidoctores;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,6 +37,12 @@ public class Ficha extends AppCompatActivity {
         setContentView(R.layout.activity_ficha);
         btn_guardarDatos = (Button)findViewById(R.id.guardarFicha);
         btn_guardarDatos.setOnClickListener(new GuardarClickListener());
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayShowTitleEnabled(true);
+        ab.setDisplayHomeAsUpEnabled(true);
 
         session = new SessionManagement(getApplicationContext());
         session.checkLogin();
@@ -196,6 +205,29 @@ public class Ficha extends AppCompatActivity {
                 }
             });
 
+
+        }
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+
+                session.logoutUser();
+                return true;
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
 
         }
     }

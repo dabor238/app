@@ -9,9 +9,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -74,11 +77,26 @@ public class ChatHistoria extends AppCompatActivity {
                                 linearLayout.addView(inflatedLayout);
 
                             } else {
+                                String tipo = "1";
+                                if(tipo.equals(u.getTipoMensaje())){
 
-                                View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
-                                TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
-                                lbl.setText(u.getMensaje());
-                                linearLayout.addView(inflatedLayout);
+                                    View inflatedLayout = inflater.inflate(R.layout.chat_item_sent, null, false);
+                                    TextView lbl = (TextView) inflatedLayout.findViewById(R.id.lbl1);
+                                    lbl.setText(u.getMensaje());
+                                    linearLayout.addView(inflatedLayout);
+
+                                }else{
+
+
+                                    View inflatedLayout = inflater.inflate(R.layout.foto_item_sent, null, false);
+                                    ImageView image = (ImageView) inflatedLayout.findViewById(R.id.image1);
+                                    String imgUrl = u.getMensaje();
+                                    Picasso.with(ChatHistoria.this).load(imgUrl).into(image);
+                                    linearLayout.addView(inflatedLayout);
+
+
+                                }
+
 
 
                             }

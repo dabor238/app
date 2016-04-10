@@ -1,21 +1,11 @@
 package multidoctores.multidoctores;
 
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
+
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.hardware.Camera;
 
-import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import microsoft.aspnet.signalr.client.Platform;
@@ -24,11 +14,8 @@ import microsoft.aspnet.signalr.client.http.android.AndroidPlatformComponent;
 import microsoft.aspnet.signalr.client.hubs.HubConnection;
 import microsoft.aspnet.signalr.client.hubs.HubProxy;
 import microsoft.aspnet.signalr.client.hubs.SubscriptionHandler1;
-import microsoft.aspnet.signalr.client.hubs.SubscriptionHandler4;
 import microsoft.aspnet.signalr.client.transport.ClientTransport;
 import microsoft.aspnet.signalr.client.transport.ServerSentEventsTransport;
-import microsoft.aspnet.signalr.client.Action;
-import multidoctores.multidoctores.HelloModel;
 
 public class SignalRService {
     private HubConnection mHubConnection;

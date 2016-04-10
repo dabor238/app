@@ -3,6 +3,7 @@
 
     <string name="app_name">Multidoctores</string>
     <string name="app_historia">Historial</string>
+    <string name="app_ficha">Ficha Médica</string>
     <string name="type_msg">Escribir mensaje</string>
 
     <string name="drawer_open">Abrir</string>

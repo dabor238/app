@@ -3,6 +3,9 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-feature android:name="android.hardware.camera"
+                  android:required="false" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -55,6 +58,7 @@
         <activity android:name=".Gracias">
         </activity>
         <activity android:name=".Ficha"
+                  android:label="@string/app_ficha"
                   android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
     </application>

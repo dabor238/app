@@ -8,6 +8,7 @@ public class itemHistoria {
     private String Mensaje;
     private boolean Escribe;
     private String IdDetalleChat;
+    private String TipoMensaje;
 
 
     public String getMensaje() {
@@ -32,5 +33,14 @@ public class itemHistoria {
 
     public void setIdDetalleChat(String idDetalleChat) {
         IdDetalleChat = idDetalleChat;
+    }
+
+
+    public String getTipoMensaje() {
+        return TipoMensaje;
+    }
+
+    public void setTipoMensaje(String tipoMensaje) {
+        TipoMensaje = tipoMensaje;
     }
 }

@@ -1,12 +1,17 @@
 package multidoctores.multidoctores;
 
-import java.util.List;
+import com.squareup.okhttp.RequestBody;
+
+
 
 import retrofit.Call;
 import retrofit.Callback;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
-import retrofit.http.Path;
+import retrofit.http.Part;
 import retrofit.http.Query;
 
 /**
@@ -48,6 +53,12 @@ public interface MyApiEndpointInterface {
 
     @POST("/api/Usuarios/asignarUsuario")
     Call<Boolean> AsignarUser(@Query("usuario") String usuario);
+
+
+
+    @FormUrlEncoded
+    @POST("/api/Usuarios/complex")
+    Call<Boolean> test(@Field("status") String status, @Field("usuario") String idUsuario, @Field("fileName") String fileName,@Field("chatId") String chatId);
 
 
 }
