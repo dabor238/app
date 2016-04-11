@@ -53,7 +53,6 @@ import microsoft.aspnet.signalr.client.hubs.HubConnection;
 import microsoft.aspnet.signalr.client.hubs.HubProxy;
 import microsoft.aspnet.signalr.client.hubs.SubscriptionHandler1;
 import microsoft.aspnet.signalr.client.hubs.SubscriptionHandler4;
-import microsoft.aspnet.signalr.client.hubs.SubscriptionHandler5;
 import microsoft.aspnet.signalr.client.transport.ClientTransport;
 import microsoft.aspnet.signalr.client.transport.ServerSentEventsTransport;
 import retrofit.Call;
@@ -263,7 +262,6 @@ public class Conversacion extends AppCompatActivity {
 
 
         servicio.startSignalR(usuario);
-
 
         String CLIENT_METHOD_BROADAST_MESSAGE = "addChatMessage";
         servicio.mHubProxy.on(CLIENT_METHOD_BROADAST_MESSAGE,
@@ -496,7 +494,7 @@ public class Conversacion extends AppCompatActivity {
                         @Override
                         public void onResponse(Response<Boolean> response, Retrofit retrofit) {
                             // success call back
-                            Toast.makeText(getApplicationContext(), "creada?", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Imagen recibida por el doctor", Toast.LENGTH_SHORT).show();
 
                         }
 

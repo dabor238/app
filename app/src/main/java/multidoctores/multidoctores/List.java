@@ -39,12 +39,16 @@ public class List extends AppCompatActivity {
     boolean estado;
     String IdChat;
     String idUser;
+
+    private ProgressBar spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
+        spinner.setVisibility(View.VISIBLE);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar2);
         setSupportActionBar(myToolbar);
@@ -166,7 +170,7 @@ public class List extends AppCompatActivity {
 
 
                 }
-
+                spinner.setVisibility(View.GONE);
 
             }
 

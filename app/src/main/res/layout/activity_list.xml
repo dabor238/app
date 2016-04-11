@@ -53,7 +53,13 @@
             android:id="@+id/contenedor">
 
 
-
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progressDrawable="@drawable/circular_progress_bar"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
     </ScrollView>
