@@ -269,7 +269,7 @@ public class Conversacion extends AppCompatActivity {
         servicio.mHubProxy.on(CLIENT_METHOD_BROADAST_MESSAGE,
                 new SubscriptionHandler4<String, String, String, String>() {
                     @Override
-                    public void run(final String who, final String message, final String hora, final String notificar) {
+                    public void run(final String who, final String message, final String hora, final String tipoMensaje) {
 
 
                         runOnUiThread(new Runnable() {
