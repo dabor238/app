@@ -77,6 +77,7 @@ public class Conversacion extends AppCompatActivity {
     String idUser;
     String chatId;
     String usuario;
+    String doctor;
     SessionManagement session;
 
 
@@ -124,6 +125,24 @@ public class Conversacion extends AppCompatActivity {
 
                     chatId = activo.getIdChat();
                     estado = true;
+                    doctor = activo.getDocMail();
+                    Call<Bio> call2 = apiService.getBio(chatId);
+
+                    call2.enqueue(new Callback<Bio>() {
+                        @Override
+                        public void onResponse(Response<Bio> response, Retrofit retrofit) {
+                            // success call back
+                            Bio docBio = response.body();
+                            Toast.makeText(getApplicationContext(), docBio.getNombre(), Toast.LENGTH_SHORT).show();
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            // Log error here since request failed
+                        }
+                    });
 
                     Call<itemHistoria[]> call = apiService.getChatHistoria(chatId);
 
@@ -212,26 +231,6 @@ public class Conversacion extends AppCompatActivity {
                         @Override
                         public void onResponse(Response<Boolean> response, Retrofit retrofit) {
 
-                            Call<itemActivo> call3 = apiService.getActivo(idUser);
-
-                            call3.enqueue(new Callback<itemActivo>() {
-                                @Override
-                                public void onResponse(Response<itemActivo> response, Retrofit retrofit) {
-                                    itemActivo activo = response.body();
-                                    chatId = activo.getIdChat();
-
-                                }
-
-                                @Override
-                                public void onFailure(Throwable t) {
-                                    Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
-
-                                }
-
-
-
-                            });
-
 
                         }
 
@@ -261,6 +260,8 @@ public class Conversacion extends AppCompatActivity {
 
 
 
+
+
         servicio.startSignalR(usuario);
 
         String CLIENT_METHOD_BROADAST_MESSAGE = "addChatMessage";
@@ -274,7 +275,42 @@ public class Conversacion extends AppCompatActivity {
 
                             public void run() {
 
-                                String doctor = "doctor1@multidoctores.com";
+                                Call<itemActivo> call3 = apiService.getActivo(idUser);
+
+                                call3.enqueue(new Callback<itemActivo>() {
+                                    @Override
+                                    public void onResponse(Response<itemActivo> response, Retrofit retrofit) {
+                                        itemActivo activo = response.body();
+                                        chatId = activo.getIdChat();
+                                        doctor = activo.getDocMail();
+                                        Call<Bio> call = apiService.getBio(chatId);
+
+                                        call.enqueue(new Callback<Bio>() {
+                                            @Override
+                                            public void onResponse(Response<Bio> response, Retrofit retrofit) {
+                                                // success call back
+                                                Bio docBio = response.body();
+
+
+                                            }
+
+                                            @Override
+                                            public void onFailure(Throwable t) {
+                                                // Log error here since request failed
+                                            }
+                                        });
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Throwable t) {
+                                        Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
+
+                                    }
+
+
+
+                                });
 
                                 if (who.equals(doctor)) {
                                     String recibeMsm = message;
@@ -407,6 +443,7 @@ public class Conversacion extends AppCompatActivity {
         public void onClick(View v){
 
             dispatchTakePictureIntent();
+
 
         }
     }

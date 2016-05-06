@@ -14,10 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -39,6 +42,7 @@ public class List extends AppCompatActivity {
     boolean estado;
     String IdChat;
     String idUser;
+    String email;
 
     private ProgressBar spinner;
 
@@ -67,7 +71,7 @@ public class List extends AppCompatActivity {
          idUser = user.get(SessionManagement.KEY_NAME);
 
         // email
-        String email = user.get(SessionManagement.KEY_EMAIL);
+         email = user.get(SessionManagement.KEY_EMAIL);
 
 
 
@@ -156,6 +160,14 @@ public class List extends AppCompatActivity {
 
 
 
+
+                    ImageView imageDoc = (ImageView) inflatedLayout.findViewById(R.id.doc);
+                    String imgUrl = u.getFoto();
+                    Picasso.with(List.this).load(imgUrl).into(imageDoc);
+
+
+
+
                     LinearLayout lista = (LinearLayout) inflatedLayout.findViewById(R.id.v1);
                     lista.setId(Integer.parseInt(u.getIdChat()));
                     lista.setClickable(true);
@@ -198,9 +210,6 @@ public class List extends AppCompatActivity {
             i.putExtra("Id", Id);
 
             startActivity(i);
-
-
-
         }
 
     }
@@ -213,12 +222,44 @@ public class List extends AppCompatActivity {
         @Override
         public void onClick(View v){
 
+            String BASE_URL = "http://www.multidoctores.com";
+            final Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
 
-            Intent i = new Intent(List.this, Conversacion.class);
-          /*  i.putExtra("estado",estado);
-            i.putExtra("IdChat",IdChat);*/
-            startActivity(i);
+            MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+
+            Call<Plan> call2 = apiService.getPlan(email);
+
+            call2.enqueue(new Callback<Plan>() {
+                @Override
+                public void onResponse(Response<Plan> response, Retrofit retrofit) {
+
+                    Plan activo = response.body();
+                    if (activo.isPermitir()) {
+
+                        Intent i = new Intent(List.this, Conversacion.class);
+                        startActivity(i);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "no tiene plan", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            });
+
+
         }
     }
 

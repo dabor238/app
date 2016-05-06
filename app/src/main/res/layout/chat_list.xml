@@ -13,10 +13,10 @@
     android:clickable="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#204188"
+    android:background="#ffffff"
     >
 
-        <LinearLayout
+    <LinearLayout
         android:id="@+id/v1"
         android:clickable="true"
         android:layout_width="match_parent"
@@ -27,9 +27,15 @@
         android:paddingLeft="@dimen/pad_15dp"
         android:paddingRight="@dimen/pad_15dp"
         android:paddingTop="@dimen/pad_5dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_gravity="right">
 
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:id="@+id/doc"
+            android:layout_weight="0.40"/>
 
         <TextView
             android:id="@+id/chatTitle"
@@ -38,8 +44,11 @@
             android:textColor="#000000"
             android:textSize="@dimen/txt_16sp"
             android:layout_marginBottom="5dp"
-            android:layout_weight="1.8"
-            android:gravity="left"/>
+            android:layout_weight="0.73"
+            android:gravity="left"
+            android:text="Dr cutus prueba"
+            android:layout_marginLeft="@dimen/pad_15dp"/>
+
 
         <TextView
             android:id="@+id/fecha"
@@ -55,20 +64,20 @@
             />
 
 
-
     </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
         android:id="@+id/v2"
         android:clickable="true"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:background="#ffffff"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/pad_15dp"
         android:paddingRight="@dimen/pad_15dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_gravity="right">
 
 
 
@@ -79,9 +88,8 @@
             android:text="Este es un mensaje que va aestar en el chat..."
             android:textColor="#727272"
             android:textSize="@dimen/txt_14sp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:gravity="left"/>
+            android:gravity="left"
+            />
 
 
 

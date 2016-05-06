@@ -11,6 +11,8 @@ public class ItemChat {
     private String Titulo;
     private String Doctor;
     private String Apellido;
+    private String Foto;
+    private String Bio;
 
 
 
@@ -53,5 +55,21 @@ public class ItemChat {
 
     public void setApellido(String apellido) {
         Apellido = apellido;
+    }
+
+    public String getFoto() {
+        return Foto;
+    }
+
+    public void setFoto(String foto) {
+        Foto = foto;
+    }
+
+    public String getBio() {
+        return Bio;
+    }
+
+    public void setBio(String bio) {
+        Bio = bio;
     }
 }

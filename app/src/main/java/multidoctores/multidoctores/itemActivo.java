@@ -7,6 +7,7 @@ public class itemActivo {
 
     private String IdChat;
     private boolean Activo;
+    private String DocMail;
 
     public String getIdChat() {
         return IdChat;
@@ -22,5 +23,14 @@ public class itemActivo {
 
     public void setActivo(boolean activo) {
         Activo = activo;
+    }
+
+
+    public String getDocMail() {
+        return DocMail;
+    }
+
+    public void setDocMail(String docMail) {
+        DocMail = docMail;
     }
 }

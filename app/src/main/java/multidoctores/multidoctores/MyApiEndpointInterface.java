@@ -24,6 +24,12 @@ public interface MyApiEndpointInterface {
     @GET("/api/Usuarios/fichaMedica")
     Call<Usuario> getFicha(@Query("Mail") String Mail);
 
+    @GET("/api/Usuarios/tienePlan")
+    Call<Plan> getPlan(@Query("mail") String email);
+
+    @GET("/api/usuarios/doctorbio")
+    Call<Bio> getBio(@Query("idchat") String chatId);
+
     @GET("/api/usuarios/historial")
     Call<ItemChat[]> getChatList(@Query("idUser") String idUser);
    // Call<ChatL> getChatList(@Query("idUser") int UserID);
