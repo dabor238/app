@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="multidoctores.multidoctores.BioDoctor"
+    android:background="@color/white">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#0071bc"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false">
+        <TextView
+            android:id="@+id/tituloTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:id="@+id/FotoDoc"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/my_toolbar"
+        android:layout_below="@+id/my_toolbar"
+        android:contentDescription="doctorFoto"
+        android:layout_marginTop="@dimen/pad_10dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_below="@+id/FotoDoc">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/BioDoc"
+            android:layout_below="@+id/FotoDoc"
+            android:layout_alignLeft="@+id/FotoDoc"
+            android:layout_alignStart="@+id/FotoDoc"
+            android:layout_alignRight="@+id/FotoDoc"
+            android:layout_alignEnd="@+id/FotoDoc"
+            android:textColor="@android:color/background_dark"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginLeft="@dimen/pad_10dp"
+            android:layout_marginRight="@dimen/pad_10dp"/>
+    </ScrollView>
+
+
+</RelativeLayout>

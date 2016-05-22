@@ -8,6 +8,8 @@
         android:title="info"
         app:showAsAction="ifRoom"/>
 
+
+
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
           android:title="Cerrar Sesión"

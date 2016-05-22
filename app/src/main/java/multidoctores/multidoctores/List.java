@@ -3,6 +3,7 @@ package multidoctores.multidoctores;
 import android.content.ClipData;
 import android.content.Intent;
 import android.nfc.Tag;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -216,48 +217,56 @@ public class List extends AppCompatActivity {
 
 
 
-
     class InicioClickListener implements View.OnClickListener{
+
 
         @Override
         public void onClick(View v){
 
-            String BASE_URL = "http://www.multidoctores.com";
-            final Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+            if(!estado){
+                String BASE_URL = "http://www.multidoctores.com";
+                final Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
 
-            MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+                MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
 
-            Call<Plan> call2 = apiService.getPlan(email);
+                Call<Plan> call2 = apiService.getPlan(email);
 
-            call2.enqueue(new Callback<Plan>() {
-                @Override
-                public void onResponse(Response<Plan> response, Retrofit retrofit) {
+                call2.enqueue(new Callback<Plan>() {
+                    @Override
+                    public void onResponse(Response<Plan> response, Retrofit retrofit) {
 
-                    Plan activo = response.body();
-                    if (activo.isPermitir()) {
+                        Plan activo = response.body();
+                        if (activo.isPermitir()) {
 
-                        Intent i = new Intent(List.this, Conversacion.class);
-                        startActivity(i);
+                            Intent i = new Intent(List.this, Conversacion.class);
+                            startActivity(i);
 
-                    } else {
-                        Toast.makeText(getApplicationContext(), "no tiene plan", Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+                            Toast.makeText(getApplicationContext(), "No tiene un plan activo.", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Sin Internet", Toast.LENGTH_SHORT).show();
+
                     }
 
 
-                }
+                });
+            }else{
+                Intent i = new Intent(List.this, Conversacion.class);
+                startActivity(i);
+            }
 
-                @Override
-                public void onFailure(Throwable t) {
-                    Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
-
-                }
-
-
-            });
 
 
         }

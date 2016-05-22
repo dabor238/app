@@ -78,6 +78,8 @@ public class Conversacion extends AppCompatActivity {
     String chatId;
     String usuario;
     String doctor;
+    String BioDoc;
+    String NombreDoc;
     SessionManagement session;
 
 
@@ -93,9 +95,9 @@ public class Conversacion extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        ActionBar ab = getSupportActionBar();
-       ab.setDisplayHomeAsUpEnabled(true);
-        ab.setDisplayShowTitleEnabled(true);
+        final ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowTitleEnabled(false);
 
         session = new SessionManagement(getApplicationContext());
         session.checkLogin();
@@ -132,9 +134,14 @@ public class Conversacion extends AppCompatActivity {
                         @Override
                         public void onResponse(Response<Bio> response, Retrofit retrofit) {
                             // success call back
-                            Bio docBio = response.body();
-                            Toast.makeText(getApplicationContext(), docBio.getNombre(), Toast.LENGTH_SHORT).show();
 
+                            Bio docBio = response.body();
+                            BioDoc = docBio.getBio();
+                            NombreDoc = docBio.getNombre();
+                            //ab.setTitle(NombreDoc);
+
+                            TextView topText = (TextView)findViewById(R.id.tituloTop);
+                            topText.setText(NombreDoc);
 
                         }
 
@@ -211,7 +218,7 @@ public class Conversacion extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Throwable t) {
-                            Toast.makeText(getApplicationContext(), "no conecta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Compruebe Internet", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -221,6 +228,7 @@ public class Conversacion extends AppCompatActivity {
 
 
                 }else{
+
 
                     chatId = activo.getIdChat();
                     estado = false;
@@ -239,6 +247,13 @@ public class Conversacion extends AppCompatActivity {
                             // Log error here since request failed
                         }
                     });
+
+
+                    ImageView image = (ImageView) findViewById(R.id.fondoConversa);
+                    image.setImageResource(R.drawable.fondo3);
+                    LinearLayout teclado = (LinearLayout) findViewById(R.id.teclado);
+                    teclado.setVisibility(View.GONE);
+                    hand.postDelayed(run, 20000); // For delay seconds
 
                 }
 
@@ -290,8 +305,12 @@ public class Conversacion extends AppCompatActivity {
                                             public void onResponse(Response<Bio> response, Retrofit retrofit) {
                                                 // success call back
                                                 Bio docBio = response.body();
+                                                BioDoc = docBio.getBio();
+                                                NombreDoc = docBio.getNombre();
+                                                //ab.setTitle(NombreDoc);
 
-
+                                                TextView topText = (TextView)findViewById(R.id.tituloTop);
+                                                topText.setText(NombreDoc);
                                             }
 
                                             @Override
@@ -304,15 +323,13 @@ public class Conversacion extends AppCompatActivity {
 
                                     @Override
                                     public void onFailure(Throwable t) {
-                                        Toast.makeText(getApplicationContext(), "no trae chat activo", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Verifique Internet", Toast.LENGTH_SHORT).show();
 
                                     }
 
-
-
                                 });
 
-                                if (who.equals(doctor)) {
+                                if (who.equals(doctor) || doctor == null) {
                                     String recibeMsm = message;
                                     if (!"Fin-del-chat".equals(message)) {
 
@@ -371,14 +388,38 @@ public class Conversacion extends AppCompatActivity {
 
 
 
+        Toolbar tb = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(tb);
+        tb.findViewById(R.id.tituloTop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent i = new Intent(getApplicationContext(), BioDoctor.class);
+                i.putExtra("CHATID", chatId);
+                startActivity(i);
+            }
+        });
+        getSupportActionBar().setTitle(null);
 
 
     }
 
 
 
+    Handler hand = new Handler();
+    Runnable run = new Runnable() {
+        @Override
 
+        public void run() {
+            ImageView image = (ImageView) findViewById(R.id.fondoConversa);
+
+            LinearLayout teclado = (LinearLayout) findViewById(R.id.teclado);
+            teclado.setVisibility(View.VISIBLE);
+            image.setImageResource(R.drawable.fondo2);
+
+        }
+
+    };
 
     class EnviarClickListener implements View.OnClickListener{
 
@@ -694,6 +735,7 @@ public class Conversacion extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+
 
             case R.id.action_historial:
 

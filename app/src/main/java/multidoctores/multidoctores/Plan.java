@@ -6,6 +6,7 @@ package multidoctores.multidoctores;
 public class Plan {
     private boolean Permitir;
 
+
     public boolean isPermitir() {
         return Permitir;
     }
