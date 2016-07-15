@@ -76,7 +76,7 @@ public class List extends AppCompatActivity {
 
 
 
-        String BASE_URL = "http://www.multidoctores.com";
+        String BASE_URL = "https://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -224,7 +224,7 @@ public class List extends AppCompatActivity {
         public void onClick(View v){
 
             if(!estado){
-                String BASE_URL = "http://www.multidoctores.com";
+                String BASE_URL = "https://www.multidoctores.com";
                 final Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -290,7 +290,7 @@ public class List extends AppCompatActivity {
         super.onResume();
 
 
-        String BASE_URL = "http://www.multidoctores.com";
+        String BASE_URL = "https://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

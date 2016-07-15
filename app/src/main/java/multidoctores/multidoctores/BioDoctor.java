@@ -43,7 +43,7 @@ public class BioDoctor extends AppCompatActivity {
         if(b!=null)
         {
             String chatId =(String) b.get("CHATID");
-            String BASE_URL = "http://www.multidoctores.com";
+            String BASE_URL = "https://www.multidoctores.com";
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())

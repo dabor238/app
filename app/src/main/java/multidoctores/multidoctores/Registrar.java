@@ -80,7 +80,7 @@ public class Registrar extends Activity {
             EditText pass1 = (EditText) findViewById(R.id.pwd);
             String pass = pass1.getText().toString();
 
-            String BASE_URL = "http://www.multidoctores.com";
+            String BASE_URL = "https://www.multidoctores.com";
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
@@ -100,7 +100,7 @@ public class Registrar extends Activity {
                         EditText pass1 = (EditText) findViewById(R.id.pwd);
                         String clave = pass1.getText().toString();
 
-                        String BASE_URL = "http://www.multidoctores.com";
+                        String BASE_URL = "https://www.multidoctores.com";
                         final Retrofit retrofit2 = new Retrofit.Builder()
                                 .baseUrl(BASE_URL)
                                 .addConverterFactory(GsonConverterFactory.create())

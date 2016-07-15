@@ -32,7 +32,7 @@ public class OlvideContrasenia extends Activity {
             EditText e = (EditText) findViewById(R.id.user);
             String mail = e.getText().toString();
 
-            String BASE_URL = "http://www.multidoctores.com";
+            String BASE_URL = "https://www.multidoctores.com";
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())

@@ -52,7 +52,7 @@ public class Ficha extends AppCompatActivity {
         Mail = user.get(SessionManagement.KEY_EMAIL);
 
 
-        String BASE_URL = "http://www.multidoctores.com";
+        String BASE_URL = "https://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -178,7 +178,7 @@ public class Ficha extends AppCompatActivity {
 
             String usuario = Mail;
 
-            String BASE_URL = "http://www.multidoctores.com";
+            String BASE_URL = "https://www.multidoctores.com";
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())

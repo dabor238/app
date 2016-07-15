@@ -108,7 +108,7 @@ public class Conversacion extends AppCompatActivity {
         usuario = user.get(SessionManagement.KEY_EMAIL);
 
 
-        String BASE_URL = "http://www.multidoctores.com";
+        String BASE_URL = "https://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -555,7 +555,7 @@ public class Conversacion extends AppCompatActivity {
                     String message = Base64.encodeToString(mapa, Base64.DEFAULT);*/
                    // String bit = "R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==";
 
-                    String BASE_URL = "http://www.multidoctores.com";
+                    String BASE_URL = "https://www.multidoctores.com";
                     final Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
@@ -597,7 +597,7 @@ public class Conversacion extends AppCompatActivity {
 
 
 
-                    /*String BASE_URL = "http://www.multidoctores.com";
+                    /*String BASE_URL = "https://www.multidoctores.com";
                     final Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
@@ -809,7 +809,7 @@ public class Conversacion extends AppCompatActivity {
     public void startSignalR() {
         Platform.loadPlatformComponent(new AndroidPlatformComponent());
 
-        String serverUrl = "http://www.multidoctores.com";
+        String serverUrl = "https://www.multidoctores.com";
         mHubConnection = new HubConnection(serverUrl);
         String SERVER_HUB_CHAT = "chatHub";
         mHubProxy = mHubConnection.createHubProxy(SERVER_HUB_CHAT);

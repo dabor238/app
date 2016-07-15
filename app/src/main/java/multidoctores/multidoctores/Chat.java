@@ -31,7 +31,7 @@ public class Chat extends Activity {
         resultadoTextView = (TextView)findViewById(R.id.textViewResultado);
 
         String Mail = "dabor238@gmail.com";
-        String BASE_URL = "http://www.multidoctores.com";
+        String BASE_URL = "https://www.multidoctores.com";
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

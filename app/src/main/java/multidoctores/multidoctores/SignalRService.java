@@ -81,7 +81,7 @@ public class SignalRService {
     public void startSignalR(String usuario) {
         Platform.loadPlatformComponent(new AndroidPlatformComponent());
 
-        String serverUrl = "http://www.multidoctores.com";
+        String serverUrl = "https://www.multidoctores.com";
         mHubConnection = new HubConnection(serverUrl);
         String SERVER_HUB_CHAT = "chatHub";
         mHubProxy = mHubConnection.createHubProxy(SERVER_HUB_CHAT);

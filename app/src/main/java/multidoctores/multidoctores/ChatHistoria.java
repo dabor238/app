@@ -54,7 +54,7 @@ public class ChatHistoria extends AppCompatActivity {
             String chatId = extras.getString("Id");
 
 
-            String BASE_URL = "http://www.multidoctores.com";
+            String BASE_URL = "https://www.multidoctores.com";
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())

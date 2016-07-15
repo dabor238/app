@@ -58,7 +58,7 @@ public class Inicio extends Activity {
             String usuario = campoUser.getText().toString();
             String clave = campoClave.getText().toString();
 
-            String BASE_URL = "http://www.multidoctores.com";
+            String BASE_URL = "https://www.multidoctores.com";
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
